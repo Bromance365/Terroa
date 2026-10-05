@@ -1,4 +1,7 @@
 import { createHash, randomInt } from "node:crypto";
+import { after } from "next/server";
+import { saveQuote } from "@/lib/server/quote-repository";
+import { notifyQuote } from "@/lib/server/mailer";
 import { clientIp, createRateLimiter, hashKey } from "@/lib/rate-limit";
 import { quoteRequestSchema, recomputeQuote, type QuoteTotals } from "@/lib/quote-schema";
 
@@ -26,11 +29,7 @@ function json(body: unknown, status = 200, extra: Record<string, string> = {}) {
 
 const fail = (status: number, error: string, extra: Record<string, string> = {}) => json({ error }, status, extra);
 
-/**
- * PHASE 1 STUB: the reference is random and nothing is stored or emailed.
- * Phase 2 replaces it with the Supabase row id / sequence and sends the staff
- * notification and the client confirmation.
- */
+/** Reference for honeypot answers only; real references come from the repository. */
 const newReference = () => `TR-${String(randomInt(0, 1_000_000)).padStart(6, "0")}`;
 
 /** Same-origin check: compares the Origin host with the Host the request came in on. */
@@ -112,7 +111,15 @@ export async function POST(request: Request) {
     return fail(429, "rate_limited", { "Retry-After": String(Math.max(ip.retryAfterSec, mail.retryAfterSec)) });
   }
 
-  const reference = newReference();
+  let saved;
+  try {
+    saved = await saveQuote(req, result, idemKey);
+  } catch {
+    // No details to the visitor; the failure is logged without personal data.
+    console.error(JSON.stringify({ event: "quote.save_failed" }));
+    return fail(500, "server_error");
+  }
+  const { reference } = saved;
   const body = { reference, totals: result.totals };
   idempotent.set(cacheKey, { at: now, body });
 
@@ -126,9 +133,12 @@ export async function POST(request: Request) {
       boxes: result.totals.boxes,
       panels: result.totals.panels,
       marketingOptIn: req.marketingOptIn,
-      stub: true,
+      stored: saved.stored,
+      duplicate: saved.duplicate,
     }),
   );
+
+  if (!saved.duplicate) after(() => notifyQuote(reference, req, result.totals));
 
   return json(body);
 }

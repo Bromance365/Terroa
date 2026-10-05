@@ -80,7 +80,7 @@ create table public.quote_requests (
   marketing_opt_in boolean not null default false,
   marketing_opt_in_at timestamptz,
   notice_version text not null,
-  idempotency_key uuid unique,
+  idempotency_key text unique check (char_length(idempotency_key) between 16 and 64),
   created_at timestamptz not null default now(),
   retain_until timestamptz not null  -- set by the server from the retention period Terroa chooses
 );
@@ -88,7 +88,7 @@ create table public.quote_requests (
 create table public.quote_items (
   id uuid primary key default gen_random_uuid(),
   quote_request_id uuid not null references public.quote_requests(id) on delete cascade,
-  product_id text references public.products(id),
+  product_id text,  -- catalogue id at quote time; no FK so quotes survive catalogue changes
   product_snapshot jsonb not null,
   quantity int not null check (quantity between 1 and 9999),
   unit text not null check (unit in ('box', 'panel', 'area')),

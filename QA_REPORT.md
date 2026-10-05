@@ -12,7 +12,7 @@
 |---|---|---|---|
 | 1 | Lint | PASS | `npm run lint`: 0 errors, 1 warning (anonymous default export in `eslint.config.mjs`, harmless) |
 | 2 | Typecheck (strict, `noUncheckedIndexedAccess`) | PASS | `npm run typecheck`: no errors |
-| 3 | Unit tests | PASS | `npm test`: 7 files, 67 tests (quantities 16 incl. the 15 originals moved to Vitest, calculator units/import, quote schema, plan-reader compute/types/file validation, FR/EN message parity) |
+| 3 | Unit tests | PASS | `npm test`: 8 files, 76 tests (67 at phase 1 + 9 server-side) (quantities 16 incl. the 15 originals moved to Vitest, calculator units/import, quote schema, plan-reader compute/types/file validation, FR/EN message parity) |
 | 4 | Production build | PASS | `npm run build`: all routes prerendered for `fr` and `en` (static), `/api/quotes` dynamic |
 | 5 | All 24 pages load, FR and EN, 1440 px and 390 px | PASS | 48 page loads, HTTP 200 (unknown path 404 with localized page), console clean, no horizontal overflow (`scrollWidth - clientWidth = 0`) on every page |
 | 6 | Visual match to the 14 artboards (home, category, product, calculator, plan reader, projects, quote) | PASS (visual review) | Compared renders with `design/screens/*`. Known intentional differences: no dashed "data to confirm" style (HANDOFF.md), quote/calculator start empty instead of the canvas sample values |
@@ -44,7 +44,7 @@
 | ID | Severity | Finding | Next step |
 |---|---|---|---|
 | F1 | Medium (privacy) | The plan reader will send plans to an AI provider outside Quebec | Privacy impact assessment, provider terms and notice wording before phase 3 (SECURITY_PRIVACY.md §5) |
-| F2 | Medium (content) | Catalogue, prices, reply delay, delivery terms, contacts, privacy officer, retention periods, legal texts are missing | Vy / Terroa, HANDOFF.md §13. Blocks launch. Placeholders in use: `[PRIX]`, `[Collection]`, `[Ville]`, `[Projet]`, `[Année]`, `[nom, courriel]`, `[délai]`, `[durée]`, `[N]`, `[Téléphone]`, `[Courriel]`, `[Adresse de l'entrepôt]`, `[Heures d'ouverture]`, `[Raison sociale]`, `[à confirmer]`, `[zones et délais]`, `[PDF à fournir]`, `[Photo …]`, legal `[Texte à fournir par Terroa.]` |
+| F2 | Medium (content) | Catalogue, prices, reply delay, delivery terms, contacts, privacy officer, retention periods, legal texts are missing | Vy / Terroa, HANDOFF.md §13. Blocks launch. Placeholders in use: `[Collection]`, `[Ville]`, `[Projet]`, `[Année]`, `[nom, courriel]`, `[délai]`, `[durée]`, `[N]`, `[Téléphone]`, `[Courriel]`, `[Adresse de l'entrepôt]`, `[Heures d'ouverture]`, `[Raison sociale]`, `[à confirmer]`, `[zones et délais]`, `[PDF à fournir]`, `[Photo …]`, legal `[Texte à fournir par Terroa.]` |
 | F3 | Low (privacy/perf) | Closed: fonts are self-hosted with `next/font/local` (the sandbox blocks Google Fonts, so `next/font/google` could not build). Same families and files as the spec | None |
 | F4 | Low (accessibility) | 12 px label style kept per the design system; contrast passes | Consider 14 px field labels |
 | F5 | Low (design) | Dark tokens only used locally (home plan band); site ships light | Keep dark opt-in |
@@ -57,6 +57,26 @@
 | F12 | Low (console) | Browser warns about two `<link rel=preload>` scene images not used shortly after client-side navigation | Drop `fetchPriority` on non-hero images if it persists |
 | F13 | Low (a11y verification) | No screen-reader pass; no real-device pass (iOS Safari camera input, Android) | Manual test before launch |
 | F14 | Info | Rounding in the plan reader uses round-half-up per room so the sample totals match the design (254 / 138 / 944); the calculator uses the original quantity module | Confirm preferred rounding with Terroa |
+
+## Phase 2 additions (5 October 2026, evening) — code ready, nothing connected
+
+Decisions from Vy: prices hidden ("Prix sur soumission"), hosting Vercel, retention quotes 24 months and plans 30 days (proposed starting point, to be confirmed by Terroa and counsel), email via Resend.
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 29 | Quote persistence layer (`src/lib/server/quote-repository.ts`) | PASS (fake client) | Unit tests: no-database fallback, request then items insert with `retain_until`, marketing consent timestamp only when opted in, idempotent replay returns the first reference, compensating delete when items fail |
+| 30 | Email (`src/lib/server/mailer.ts`, Resend REST) | PASS (mocked fetch) | Plain text only, subject carries the reference only, no send and no throw when unconfigured, staff only unless `SEND_CUSTOMER_CONFIRMATIONS=true` (off by default) |
+| 31 | Retention job + cron route | PASS (fake client) / route fails closed | Removes expired plan files, keeps an audit timestamp, purges expired quotes; `GET /api/cron/retention` returns 503 without `CRON_SECRET`, 401 on a wrong bearer (timing-safe compare) |
+| 32 | Browser regression after changes | PASS | Scripted flows re-run: all PASS; `/api/quotes` returns a reference in no-database mode and logs `stored:false` with no personal data |
+| 33 | Service-role key stays server-side | PASS | `server-only` import on all server modules (client import fails the build); build output grep for key names still empty |
+| 34 | Supabase schema + RLS against a real project | BLOCKED | No project/credentials. Migration `supabase/migrations/20261005000000_init.sql` is written, not applied |
+| 35 | Authorized/denied access with isolated accounts (anon vs staff) | BLOCKED | Needs the staging project (see `supabase/README.md`) |
+| 36 | Real email delivery, SPF/DKIM on the sending domain | BLOCKED | Needs Resend account, verified domain, `MAIL_FROM`, `QUOTE_NOTIFY_TO` |
+| 37 | Vercel cron execution | BLOCKED | Not deployed; `vercel.json` schedules `0 7 * * *` UTC |
+
+Updated findings: F2 now excludes prices (hidden by decision) and retention values (proposed, not final); F6 still open (rate limiter in memory, no bot check); new F15 (Medium): privacy policy still says `[durée]` and `[N] jours` until Terroa confirms the retention periods in `src/lib/retention.ts`.
+
+Verdict unchanged: **READY for review, NOT READY for production** (checks 23–25 and 34–37 BLOCKED).
 
 ## Verdict
 
