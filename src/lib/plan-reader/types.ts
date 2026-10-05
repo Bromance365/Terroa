@@ -19,7 +19,7 @@ export const MAX_PAGE = 20;
 
 /** Control characters, bidi overrides/isolates, zero-width marks and line separators. */
 // eslint-disable-next-line no-control-regex
-const UNSAFE_CHARS = /[\u0000-\u001f\u007f-\u009f​-‏ -‮⁠-⁩﻿]/g;
+const UNSAFE_CHARS = /[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u2028-\u202e\u2060-\u2069\ufeff]/g;
 const hasUnsafeChars = (s: string) => {
   UNSAFE_CHARS.lastIndex = 0;
   return UNSAFE_CHARS.test(s);
