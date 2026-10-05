@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<title>Terroa — Composants</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;display=swap">
+<style>
+body{margin:0}
+.tr{--surface:#faf8f4;--surface-raised:#ffffff;--ink:#1b1d22;--ink-muted:#565b66;--line:#d9d4ca;--border-strong:#7a7f8a;--accent:#0b5d57;--on-accent:#ffffff;--copper:#b4531f;--danger:#b3261e;--success:#0b6b8a;--display:"Fraunces",Georgia,"Times New Roman",serif;--sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+.tr.dark{--surface:#14161a;--surface-raised:#1d2026;--ink:#f1eee8;--ink-muted:#aab0bb;--line:#2e323a;--border-strong:#7d8491;--accent:#5fc4bb;--on-accent:#0c1a19;--copper:#e08a55;--danger:#ff8a7a;--success:#6cc6e8}
+.tr *{box-sizing:border-box}
+.tr button,.tr input,.tr select,.tr textarea{font:inherit;color:inherit}
+.tr a{color:var(--accent)}
+.tr a:hover{color:var(--ink)}
+.tr :focus-visible{outline:2px solid transparent;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
+@media (prefers-reduced-motion: reduce){.tr *{transition:none !important;animation:none !important}}
+</style>
+</helmet>
+<div class="tr {{themeClass}}" style="background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 24px">
+<main style="max-width: 1280px; margin: 0 auto; padding: 80px clamp(16px, 4vw, 32px) 96px; display: flex; flex-direction: column; gap: 80px">
+
+<header style="display: flex; flex-direction: column; gap: 16px; padding-bottom: 32px; border-bottom: 1px solid var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Système de design · Composants</p>
+<h1 style="margin: 0; font-family: var(--display); font-size: 56px; line-height: 60px; font-weight: 600; letter-spacing: -0.01em">Composants</h1>
+<p style="margin: 0; max-width: 760px; color: var(--ink-muted)">Les pièces réutilisées dans toutes les maquettes. Chaque contrôle est un vrai bouton, lien ou champ avec une étiquette visible. Les valeurs entre crochets sont à confirmer par Terroa.</p>
+</header>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">01 · Boutons</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Une action principale par écran</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(560px, 100%), 1fr)); gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Variantes</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+<button type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; cursor: pointer">Demander une soumission</button>
+<button type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); color: var(--ink); font-weight: 600; cursor: pointer">Calculer mes quantités</button>
+<button type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 10px; background: transparent; color: var(--accent); font-weight: 600; cursor: pointer">Voir la fiche</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+<button type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5"></path><path d="M12 3v12"></path></svg>Téléverser un plan</button>
+<button type="button" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--danger); border-radius: 10px; background: transparent; color: var(--danger); font-weight: 600; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Retirer</button>
+<button type="button" aria-label="Rechercher" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Primaire en accent, secondaire en contour border-strong, discret en texte accent. Le bouton icône seule porte toujours un libellé accessible.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">États et tailles</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Normal</span><span style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; align-self: flex-start">Envoyer la demande</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Focus clavier</span><span style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; align-self: flex-start; box-shadow: 0 0 0 2px var(--surface-raised), 0 0 0 4px var(--accent)">Envoyer la demande</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Désactivé</span><button type="button" disabled style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border: 1px dashed var(--border-strong); border-radius: 10px; background: transparent; color: var(--ink-muted); font-weight: 600; align-self: flex-start; cursor: not-allowed">Envoyer la demande</button></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Envoi en cours</span><span style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; align-self: flex-start">Envoi en cours…</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Standard · 44 px</span><span style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border-strong); font-weight: 600; align-self: flex-start">Ajouter</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Grand · 52 px (héros, barre collante)</span><span style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 24px; border-radius: 10px; border: 1px solid var(--border-strong); font-weight: 600; align-self: flex-start">Ajouter à la soumission</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">02 · Champs</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Étiquette visible, erreur juste à côté</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 24px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="c-projet" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Nom du projet</label>
+<input id="c-projet" type="text" value="Condo Laval — rez-de-chaussée" style="height: 44px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Visible seulement par notre équipe.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="c-surface" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Surface à couvrir</label>
+<div style="display: flex; align-items: center; height: 44px; border: 2px solid var(--danger); border-radius: 6px; background: var(--surface-raised); overflow: hidden">
+<input id="c-surface" type="text" inputmode="decimal" value="0" aria-invalid="true" aria-describedby="c-surface-err" style="flex: 1 1 auto; min-width: 0; height: 100%; padding: 0 12px; border: 0; background: transparent; font-size: 16px">
+<span style="padding: 0 12px; color: var(--ink-muted)">pi²</span>
+</div>
+<span id="c-surface-err" style="display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 20px; color: var(--danger)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>Entrez une surface entre 1 et 100 000 pi².</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="c-type" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Type de projet</label>
+<div style="position: relative">
+<select id="c-type" style="width: 100%; height: 44px; padding: 0 44px 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px; appearance: none; -webkit-appearance: none">
+<option>Résidentiel</option>
+<option>Commercial</option>
+<option>Multilogement</option>
+<option>Bureaux</option>
+</select>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; right: 12px; top: 12px; pointer-events: none"><path d="m6 9 6 6 6-6"></path></svg>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="c-long" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Longueur</label>
+<div style="display: flex; align-items: center; height: 44px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); overflow: hidden">
+<input id="c-long" type="text" inputmode="decimal" value="18,2" style="flex: 1 1 auto; min-width: 0; height: 100%; padding: 0 12px; border: 0; background: transparent; font-size: 16px; font-variant-numeric: tabular-nums">
+<span style="padding: 0 12px; color: var(--ink-muted)">pi</span>
+</div>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Virgule ou point acceptés.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span id="c-qte-label" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Quantité (boîtes)</span>
+<div style="display: inline-flex; align-items: center; align-self: flex-start; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); overflow: hidden">
+<button type="button" aria-label="Retirer une boîte" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<input aria-labelledby="c-qte-label" type="text" inputmode="numeric" value="22" style="width: 64px; height: 44px; border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: transparent; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums">
+<button type="button" aria-label="Ajouter une boîte" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="c-search" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Rechercher un produit</label>
+<div style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--ink-muted)"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input id="c-search" type="search" placeholder="Chêne, gris, lattes…" style="flex: 1 1 auto; min-width: 0; height: 100%; border: 0; background: transparent; font-size: 16px">
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; grid-column: 1 / -1">
+<label for="c-notes" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Notes pour l'équipe <span style="font-weight: 400; color: var(--ink-muted)">(facultatif)</span></label>
+<textarea id="c-notes" rows="3" placeholder="Accès au chantier, échéancier, contraintes de livraison…" style="padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px; line-height: 24px; resize: vertical"></textarea>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">03 · Sélection</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Cases, choix, filtres et tons</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0 0 8px; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Cases à cocher</p>
+<label style="display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer"><input type="checkbox" checked style="width: 20px; height: 20px; margin: 0; accent-color: var(--accent)">Inclure dans la soumission</label>
+<label style="display: flex; align-items: flex-start; gap: 12px; min-height: 44px; padding-top: 10px; cursor: pointer"><input type="checkbox" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--accent); flex: none"><span>Recevoir les nouveautés par courriel <span style="color: var(--ink-muted)">(facultatif, décoché par défaut)</span></span></label>
+</div>
+<fieldset style="margin: 0; display: flex; flex-direction: column; gap: 8px; padding: 24px; border: 0; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<legend style="float: left; padding: 0; margin: 0 0 8px; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Réception de la commande</legend>
+<label style="clear: both; display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer"><input type="radio" name="c-recep" checked style="width: 20px; height: 20px; margin: 0; accent-color: var(--accent)">Livraison au chantier</label>
+<label style="display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer"><input type="radio" name="c-recep" style="width: 20px; height: 20px; margin: 0; accent-color: var(--accent)">Ramassage à l'entrepôt <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; font-size: 14px; line-height: 20px; color: var(--ink-muted)">[adresse]</span></label>
+</fieldset>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Bascule d'unités</p>
+<div style="display: inline-flex; align-self: flex-start; padding: 4px; gap: 4px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border-strong)">
+<button type="button" aria-pressed="true" style="min-width: 88px; height: 40px; padding: 0 16px; border: 0; border-radius: 6px; background: var(--ink); color: var(--surface); font-weight: 600; cursor: pointer">pi / pi²</button>
+<button type="button" aria-pressed="false" style="min-width: 88px; height: 40px; padding: 0 16px; border: 0; border-radius: 6px; background: transparent; font-weight: 600; cursor: pointer">m / m²</button>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Le bloc entier fait 48 px de haut. Les deux unités restent affichées dans les résultats.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Filtres</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" aria-pressed="true" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--ink); border-radius: 999px; background: var(--ink); color: var(--surface); font-size: 14px; font-weight: 600; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Pose clic</button>
+<button type="button" aria-pressed="false" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--border-strong); border-radius: 999px; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer">À coller</button>
+<button type="button" aria-pressed="false" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--border-strong); border-radius: 999px; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer">Commercial</button>
+<button type="button" aria-pressed="false" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--border-strong); border-radius: 999px; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer">Ton pâle</button>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Filtre actif : fond encre et coche, pas seulement une couleur.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Ton : <span style="color: var(--ink)">Chêne naturel</span></p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<button type="button" aria-label="Chêne naturel" aria-pressed="true" style="width: 48px; height: 48px; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer; box-shadow: 0 0 0 2px var(--surface-raised), 0 0 0 4px var(--ink)"><img src="/_blob/8f851cbfde9c5255df4960b221d181ec" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button>
+<button type="button" aria-label="Chêne fumé" aria-pressed="false" style="width: 48px; height: 48px; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer"><img src="/_blob/a975a4df54404f1850b0794bc4a46fc8" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button>
+<button type="button" aria-label="Noyer" aria-pressed="false" style="width: 48px; height: 48px; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer"><img src="/_blob/70fca5484e26ba72b60dd2944b28f066" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button>
+<button type="button" aria-label="Frêne blanchi" aria-pressed="false" style="width: 48px; height: 48px; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer"><img src="/_blob/8a1e9098e2f080870b72808bccc9aa6b" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button>
+<button type="button" aria-label="Chêne gris" aria-pressed="false" style="width: 48px; height: 48px; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer"><img src="/_blob/fcd76c0d0124484aa874e5e651f6b0aa" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Pourcentage de perte</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" aria-pressed="false" style="min-width: 72px; min-height: 44px; padding: 0 16px; border: 1px solid var(--border-strong); border-radius: 10px; background: transparent; font-weight: 600; cursor: pointer">5 %</button>
+<button type="button" aria-pressed="true" style="min-width: 72px; min-height: 44px; padding: 0 16px; border: 2px solid var(--accent); border-radius: 10px; background: var(--surface); color: var(--accent); font-weight: 600; cursor: pointer">10 %</button>
+<button type="button" aria-pressed="false" style="min-width: 72px; min-height: 44px; padding: 0 16px; border: 1px solid var(--border-strong); border-radius: 10px; background: transparent; font-weight: 600; cursor: pointer">15 %</button>
+</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">04 · Statuts et messages</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Toujours un mot ou une icône</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(560px, 100%), 1fr)); gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 24px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Pastilles</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--success); color: var(--success); font-size: 14px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Confiance élevée</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--ink); font-size: 14px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>À vérifier</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--danger); color: var(--danger); font-size: 14px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>Illisible</span>
+<span style="display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 6px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink-muted); font-size: 14px; font-weight: 600">Exclue</span>
+<span style="display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 6px; background: var(--ink); color: var(--surface); font-size: 14px; font-weight: 600">Nouveau</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Donnée à confirmer (maquette seulement)</p>
+<p style="margin: 0">Prix : <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; color: var(--ink-muted)">[PRIX] $ / pi²</span> · Garantie : <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; color: var(--ink-muted)">[à confirmer]</span></p>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Signale chaque fait que Terroa doit fournir. Ce style n'existe pas sur le site final.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Messages</p>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border-strong)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent)"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600">Lecture automatique.</strong> Vérifiez les cotes avant d'envoyer votre demande.</p></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--success)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--success)"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600">Demande envoyée.</strong> Réponse par courriel sous <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; color: var(--ink-muted)">[délai]</span>.</p></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--danger)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--danger)"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg><p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600">Fichier trop lourd.</strong> Choisissez un fichier de 20 Mo ou moins, ou prenez une photo du plan.</p></div>
+<div style="display: flex; gap: 16px; align-items: center; justify-content: space-between; padding: 12px 12px 12px 16px; border-radius: 10px; background: var(--ink); color: var(--surface)"><p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600">Ajouté à la soumission.</strong> Chêne naturel, 21 boîtes.</p><a href="QuoteBasket.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 6px; color: var(--surface); font-weight: 600; text-decoration: underline">Voir (3)</a></div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">05 · Navigation</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">En-tête, fil d'Ariane, langue</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); background: var(--surface)">
+<header style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap; padding: 16px 24px; border-bottom: 1px solid var(--line)">
+<a href="Home.dc.html" style="font-family: var(--display); font-size: 28px; line-height: 32px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em">Terroa</a>
+<nav aria-label="Navigation principale" style="display: flex; gap: 24px; flex-wrap: wrap; flex: 1 1 auto">
+<a href="Category.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Planchers</a>
+<a href="Category.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Panneaux acoustiques</a>
+<a href="Gallery.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Réalisations</a>
+<a href="Calculator.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Calculateur</a>
+<a href="PlanReader.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Lecteur de plans</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" aria-label="Rechercher" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
+<nav aria-label="Langue" style="display: flex; gap: 0">
+<a href="#" aria-current="true" lang="fr-CA" style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 4px">FR</a>
+<a href="#" lang="en-CA" hreflang="en-CA" style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; color: var(--ink-muted); font-weight: 600; text-decoration: none">EN</a>
+</nav>
+<a href="QuoteBasket.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 10px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>Soumission<span style="display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px; background: var(--on-accent); color: var(--accent); font-size: 14px; line-height: 20px">3</span></a>
+</div>
+</header>
+<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center; padding: 16px 24px">
+<nav aria-label="Fil d'Ariane">
+<ol style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 14px; line-height: 20px">
+<li><a href="Home.dc.html" style="color: var(--ink-muted)">Accueil</a></li>
+<li aria-hidden="true" style="color: var(--ink-muted)">/</li>
+<li><a href="Category.dc.html" style="color: var(--ink-muted)">Planchers</a></li>
+<li aria-hidden="true" style="color: var(--ink-muted)">/</li>
+<li aria-current="page" style="font-weight: 600">Planchers de vinyle</li>
+</ol>
+</nav>
+<nav aria-label="Sections de la fiche" style="display: flex; gap: 24px; flex-wrap: wrap; border-bottom: 1px solid var(--line)">
+<a href="#" aria-current="true" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; text-decoration: none; box-shadow: inset 0 -2px 0 var(--accent)">Caractéristiques</a>
+<a href="#" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-muted); font-weight: 500; text-decoration: none">Installation</a>
+<a href="#" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-muted); font-weight: 500; text-decoration: none">Documents</a>
+</nav>
+</div>
+</div>
+<div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start">
+<div style="width: 390px; max-width: 100%; border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); background: var(--surface)">
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 64px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--line)">
+<a href="Home.dc.html" style="font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600; color: var(--ink); text-decoration: none">Terroa</a>
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="QuoteBasket.dc.html" aria-label="Soumission, 3 produits" style="position: relative; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--ink)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span style="position: absolute; top: 4px; right: 2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-size: 12px; line-height: 20px; font-weight: 600; text-align: center">3</span></a>
+<button type="button" aria-label="Ouvrir le menu" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg></button>
+</div>
+</header>
+<p style="margin: 0; padding: 12px 16px; font-size: 14px; line-height: 20px; color: var(--ink-muted)">En-tête mobile : nom, soumission avec compteur, menu.</p>
+</div>
+<div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: 10px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Règles</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px">FR et EN ont le même poids visuel. Le lien de langue mène à la page équivalente, pas à l'accueil. La soumission reste visible dans l'en-tête sur toutes les pages.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">06 · Cartes</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Produit, catégorie, projet, outil</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px; align-items: start">
+<article style="display: flex; flex-direction: column; background: var(--surface-raised); border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line)">
+<a href="Product.dc.html" style="display: block"><img src="/_blob/8f851cbfde9c5255df4960b221d181ec" alt="Chêne naturel, plancher de vinyle" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block"></a>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 16px">
+<h3 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600"><a href="Product.dc.html" style="color: var(--ink); text-decoration: none">Chêne naturel</a></h3>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Plancher de vinyle · pose clic</p>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 8px">
+<span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; font-size: 14px; line-height: 20px; color: var(--ink-muted)">[PRIX] $ / pi²</span>
+<button type="button" aria-label="Ajouter Chêne naturel à la soumission" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+</article>
+<a href="Category.dc.html" style="display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; text-decoration: none; color: var(--ink); background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)">
+<img src="/_blob/f26e8b049b944037aec25dee4c18a834" alt="" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+<span style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px">
+<span style="display: flex; flex-direction: column"><span style="font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Panneaux acoustiques</span><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Voir les collections</span></span>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; color: var(--accent)"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+</span>
+</a>
+<article style="display: flex; flex-direction: column; gap: 12px">
+<a href="Gallery.dc.html" style="display: block; border-radius: 10px; overflow: hidden"><img src="/_blob/4f9859fa6f21b43d708849e81cc61b95" alt="Projet résidentiel avec plancher chêne fumé et lattes noires, illustration temporaire" style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block"></a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h3 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600"><span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; color: var(--ink-muted); font-weight: 500">[Projet] · [Ville]</span></h3>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Chêne fumé · Lattes noires</p>
+</div>
+</article>
+<article style="display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 10px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)">
+<span style="width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; background: var(--surface); color: var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"></rect><path d="M8 6h8"></path><path d="M16 14v4"></path><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span>
+<h3 style="margin: 0; font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Calculer mes quantités</h3>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Entrez vos pièces, ajoutez la perte, obtenez le nombre de boîtes.</p>
+<a href="Calculator.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; text-decoration: none">Ouvrir le calculateur<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+</article>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">07 · Soumission et outils</p>
+<h2 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Les pièces du parcours pro</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(560px, 100%), 1fr)); gap: 24px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; background: var(--surface-raised); border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Ligne de soumission</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+<img src="/_blob/8f851cbfde9c5255df4960b221d181ec" alt="" style="width: 80px; height: 80px; border-radius: 6px; object-fit: cover; display: block; flex: none">
+<div style="flex: 1 1 180px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-weight: 600">Chêne naturel</span>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Plancher de vinyle · pose clic</span>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Salon, cuisine · 374 pi² prévus</span>
+</div>
+<div style="display: inline-flex; align-items: center; border: 1px solid var(--border-strong); border-radius: 10px; overflow: hidden">
+<button type="button" aria-label="Retirer une boîte de Chêne naturel" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<span style="width: 56px; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums">21</span>
+<button type="button" aria-label="Ajouter une boîte de Chêne naturel" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+<button type="button" aria-label="Retirer Chêne naturel de la soumission" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; color: var(--danger); cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Pièce détectée sur un plan</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+<input type="checkbox" checked aria-label="Inclure Salon" style="width: 20px; height: 20px; margin: 0 12px; accent-color: var(--accent)">
+<span style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-size: 14px; font-weight: 600">1</span>
+<span style="flex: 1 1 140px; display: flex; flex-direction: column"><span style="font-weight: 600">Salon</span><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">18 pi 2 po × 14 pi 0 po</span></span>
+<span style="font-weight: 600; font-variant-numeric: tabular-nums">254 pi²</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--success); color: var(--success); font-size: 14px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Élevée</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: 16px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink-muted)">Résultat du calculateur</p>
+<p style="margin: 0; font-family: var(--display); font-size: 56px; line-height: 60px; font-weight: 600; color: var(--copper); font-variant-numeric: tabular-nums">52 boîtes</p>
+<p style="margin: 0; color: var(--ink-muted)">1 039 pi² à commander (96,5 m²) · 944 pi² + 10 % de perte · 20 pi² par boîte</p>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 32px 24px; border: 2px dashed var(--border-strong); border-radius: 16px; background: var(--surface-raised); text-align: center">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--accent)"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5"></path><path d="M12 3v12"></path></svg>
+<p style="margin: 0; font-weight: 600">Déposez votre plan ici</p>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">PDF, JPG ou PNG · 20 Mo maximum</p>
+<button type="button" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); font-weight: 600; cursor: pointer">Choisir un fichier</button>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Thème"},"$preview":{"width":1440,"height":4320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { themeClass: (this.props.theme ?? 'light') === 'dark' ? 'dark' : '' };
+  }
+}
+</script>
+</body>
+</html>

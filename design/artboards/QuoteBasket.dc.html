@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<title>Terroa — Votre soumission</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;display=swap">
+<style>
+body{margin:0}
+.tr,.tr .light{--surface:#faf8f4;--surface-raised:#ffffff;--ink:#1b1d22;--ink-muted:#565b66;--line:#d9d4ca;--border-strong:#7a7f8a;--accent:#0b5d57;--on-accent:#ffffff;--copper:#b4531f;--danger:#b3261e;--success:#0b6b8a;--display:"Fraunces",Georgia,"Times New Roman",serif;--sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+.tr.dark,.tr .dark{--surface:#14161a;--surface-raised:#1d2026;--ink:#f1eee8;--ink-muted:#aab0bb;--line:#2e323a;--border-strong:#7d8491;--accent:#5fc4bb;--on-accent:#0c1a19;--copper:#e08a55;--danger:#ff8a7a;--success:#6cc6e8}
+.tr *{box-sizing:border-box}
+.tr button,.tr input,.tr select,.tr textarea{font:inherit;color:inherit}
+.tr a{color:var(--accent)}
+.tr a:hover{color:var(--ink)}
+.tr :focus-visible{outline:2px solid transparent;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
+.tr button:disabled{cursor:not-allowed;opacity:0.45}
+.tr .skip{position:absolute;left:16px;top:-80px;z-index:20}
+.tr .skip:focus{top:16px}
+@media (max-width: 899px){.tr .hide-sm{display:none !important}}
+@media (min-width: 900px){.tr .show-sm{display:none !important}}
+@media (prefers-reduced-motion: reduce){.tr *{transition:none !important;animation:none !important}}
+</style>
+</helmet>
+<div class="tr {{themeClass}}" style="position: relative; background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 24px">
+<a href="#contenu" class="skip" style="padding: 10px 16px; background: var(--accent); color: var(--on-accent); border-radius: 6px; font-weight: 600">Aller au contenu</a>
+
+<header style="position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--line)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 12px clamp(16px, 4vw, 32px); display: flex; align-items: center; gap: clamp(8px, 2vw, 32px)">
+<a href="Home.dc.html" style="font-family: var(--display); font-size: 28px; line-height: 32px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em">Terroa</a>
+<nav aria-label="Navigation principale" class="hide-sm" style="display: flex; gap: 24px; flex: 1 1 auto; flex-wrap: wrap">
+<a href="Category.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Planchers</a>
+<a href="Category.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Panneaux acoustiques</a>
+<a href="Gallery.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Réalisations</a>
+<a href="Calculator.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Calculateur</a>
+<a href="PlanReader.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500">Lecteur de plans</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; margin-left: auto">
+<button type="button" aria-label="Rechercher" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
+<nav aria-label="Langue" class="hide-sm" style="display: flex">
+<a href="#" aria-current="true" lang="fr-CA" style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 4px">FR</a>
+<a href="#" lang="en-CA" hreflang="en-CA" style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; color: var(--ink-muted); font-weight: 600; text-decoration: none">EN</a>
+</nav>
+<a href="QuoteBasket.dc.html" aria-current="page" aria-label="{{ headerLabel }}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border-radius: 10px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span class="hide-sm">Soumission</span><span style="display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px; background: var(--on-accent); color: var(--accent); font-size: 14px; line-height: 20px">{{ summary.products }}</span></a>
+<button type="button" aria-label="Ouvrir le menu" class="show-sm" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg></button>
+</div>
+</div>
+</header>
+
+<main id="contenu" style="max-width: 1280px; margin: 0 auto; padding: 32px clamp(16px, 4vw, 32px) 96px; display: flex; flex-direction: column; gap: 32px">
+
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px">
+<h1 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Votre soumission</h1>
+<p style="margin: 0; color: var(--ink-muted)">Vérifiez vos produits et vos quantités, décrivez le projet, puis envoyez la demande. Aucun paiement en ligne : notre équipe vous répond avec les prix, les taxes et la livraison.</p>
+</div>
+
+<form onSubmit="{{ submit }}" novalidate style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 48px">
+
+<section aria-labelledby="t-produits" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="t-produits" style="margin: 0 0 8px; font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Produits</h2>
+<sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-bottom: 1px solid var(--line)">
+
+<sc-if value="{{ items.cn.show }}" hint-placeholder-val="{{ true }}">
+<li style="display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line)">
+<img src="/_blob/8f851cbfde9c5255df4960b221d181ec" alt="" style="width: 88px; height: 88px; border-radius: 6px; object-fit: cover; display: block; flex: none">
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<a href="Product.dc.html" style="font-weight: 600; color: var(--ink); text-decoration: none">Chêne naturel</a>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Plancher de vinyle</span>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Salon, cuisine · 374 pi² prévus · plan RDC</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="q-cn" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Boîtes</label>
+<div style="display: inline-flex; align-items: center; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); overflow: hidden">
+<button type="button" aria-label="Retirer une boîte de Chêne naturel" onClick="{{ items.cn.dec }}" disabled="{{ items.cn.atMin }}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<input id="q-cn" type="text" inputmode="numeric" value="{{ items.cn.qty }}" onChange="{{ items.cn.onInput }}" style="width: 56px; height: 44px; border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: transparent; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums">
+<button type="button" aria-label="Ajouter une boîte de Chêne naturel" onClick="{{ items.cn.inc }}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+<button type="button" onClick="{{ items.cn.remove }}" aria-label="Retirer Chêne naturel de la soumission" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--danger); font-weight: 600; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Retirer</button>
+</li>
+</sc-if>
+
+<sc-if value="{{ items.cg.show }}" hint-placeholder-val="{{ true }}">
+<li style="display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line)">
+<img src="/_blob/fcd76c0d0124484aa874e5e651f6b0aa" alt="" style="width: 88px; height: 88px; border-radius: 6px; object-fit: cover; display: block; flex: none">
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<a href="Product.dc.html" style="font-weight: 600; color: var(--ink); text-decoration: none">Chêne gris</a>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Plancher de vinyle</span>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Chambres, bureau · 402 pi² prévus · plan RDC</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="q-cg" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Boîtes</label>
+<div style="display: inline-flex; align-items: center; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); overflow: hidden">
+<button type="button" aria-label="Retirer une boîte de Chêne gris" onClick="{{ items.cg.dec }}" disabled="{{ items.cg.atMin }}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<input id="q-cg" type="text" inputmode="numeric" value="{{ items.cg.qty }}" onChange="{{ items.cg.onInput }}" style="width: 56px; height: 44px; border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: transparent; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums">
+<button type="button" aria-label="Ajouter une boîte de Chêne gris" onClick="{{ items.cg.inc }}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+<button type="button" onClick="{{ items.cg.remove }}" aria-label="Retirer Chêne gris de la soumission" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--danger); font-weight: 600; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Retirer</button>
+</li>
+</sc-if>
+
+<sc-if value="{{ items.ln.show }}" hint-placeholder-val="{{ true }}">
+<li style="display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line)">
+<img src="/_blob/e17427b2dfb57e1b082f2c1d82eb36e0" alt="" style="width: 88px; height: 88px; border-radius: 6px; object-fit: cover; display: block; flex: none">
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<a href="Product.dc.html" style="font-weight: 600; color: var(--ink); text-decoration: none">Lattes noyer</a>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Panneau acoustique</span>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">Mur du salon · 12 pi × 8 pi</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="q-ln" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Panneaux</label>
+<div style="display: inline-flex; align-items: center; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); overflow: hidden">
+<button type="button" aria-label="Retirer un panneau de Lattes noyer" onClick="{{ items.ln.dec }}" disabled="{{ items.ln.atMin }}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<input id="q-ln" type="text" inputmode="numeric" value="{{ items.ln.qty }}" onChange="{{ items.ln.onInput }}" style="width: 56px; height: 44px; border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); background: transparent; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums">
+<button type="button" aria-label="Ajouter un panneau de Lattes noyer" onClick="{{ items.ln.inc }}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+<button type="button" onClick="{{ items.ln.remove }}" aria-label="Retirer Lattes noyer de la soumission" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--danger); font-weight: 600; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Retirer</button>
+</li>
+</sc-if>
+
+</ul>
+</sc-if>
+<sc-if value="{{ noItems }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px; border-radius: 16px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)">
+<p style="margin: 0; font-weight: 600">Votre soumission est vide.</p>
+<p style="margin: 0; color: var(--ink-muted)">Ajoutez des produits depuis le catalogue, le calculateur ou le lecteur de plans.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<a href="Category.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none">Voir les produits</a>
+<button type="button" onClick="{{ restore }}" style="display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border: 1px solid var(--border-strong); border-radius: 10px; background: transparent; font-weight: 600; cursor: pointer">Rétablir les produits retirés</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ err.items }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; display: flex; gap: 8px; align-items: center; font-size: 14px; line-height: 20px; color: var(--danger)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>Ajoutez au moins un produit avant d'envoyer.</p>
+</sc-if>
+</section>
+
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 24px">
+<legend style="float: left; width: 100%; margin: 0 0 24px; padding: 0; font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Le projet</legend>
+<div style="clear: both; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-projet" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Nom du projet <span style="font-weight: 400; color: var(--ink-muted)">(facultatif)</span></label>
+<input id="f-projet" type="text" value="{{ form.projet }}" onChange="{{ on.projet }}" style="height: 44px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-type" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Type de projet</label>
+<div style="position: relative">
+<select id="f-type" style="width: 100%; height: 44px; padding: 0 44px 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px; appearance: none; -webkit-appearance: none">
+<option>Résidentiel</option>
+<option>Multilogement</option>
+<option>Commercial</option>
+<option>Bureaux</option>
+</select>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; right: 12px; top: 12px; pointer-events: none"><path d="m6 9 6 6 6-6"></path></svg>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-ville" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Ville du chantier</label>
+<input id="f-ville" type="text" autocomplete="address-level2" value="{{ form.ville }}" onChange="{{ on.ville }}" aria-invalid="{{ err.ville }}" aria-describedby="e-ville" style="height: 44px; padding: 0 12px; border: {{ err.villeBorder }}; border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+<sc-if value="{{ err.ville }}" hint-placeholder-val="{{ false }}"><span id="e-ville" style="font-size: 14px; line-height: 20px; color: var(--danger)">Indiquez la ville du chantier.</span></sc-if>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">La ville suffit pour estimer la livraison.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-debut" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Début des travaux</label>
+<div style="position: relative">
+<select id="f-debut" style="width: 100%; height: 44px; padding: 0 44px 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px; appearance: none; -webkit-appearance: none">
+<option>D'ici un mois</option>
+<option>D'ici trois mois</option>
+<option>Plus tard</option>
+<option>Date à préciser</option>
+</select>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; right: 12px; top: 12px; pointer-events: none"><path d="m6 9 6 6 6-6"></path></svg>
+</div>
+</div>
+</div>
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 4px">
+<legend style="float: left; width: 100%; margin: 0 0 8px; padding: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Réception</legend>
+<label style="clear: both; display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer"><input type="radio" name="reception" checked="{{ recep.livraison }}" onChange="{{ recep.pickLivraison }}" style="width: 20px; height: 20px; margin: 0; accent-color: var(--accent)">Livraison au chantier</label>
+<label style="display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer"><input type="radio" name="reception" checked="{{ recep.ramassage }}" onChange="{{ recep.pickRamassage }}" style="width: 20px; height: 20px; margin: 0; accent-color: var(--accent)">Ramassage à l'entrepôt</label>
+<sc-if value="{{ recep.livraison }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Les frais de livraison sont calculés dans la soumission selon la ville du chantier.</p></sc-if>
+<sc-if value="{{ recep.ramassage }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Entrepôt : <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px">[adresse]</span> · <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px">[heures]</span></p></sc-if>
+</fieldset>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-notes" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Notes pour l'équipe <span style="font-weight: 400; color: var(--ink-muted)">(facultatif)</span></label>
+<textarea id="f-notes" rows="3" placeholder="Accès au chantier, échéancier, autres surfaces à prévoir…" style="padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px; line-height: 24px; resize: vertical"></textarea>
+</div>
+</fieldset>
+
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 24px">
+<legend style="float: left; width: 100%; margin: 0 0 24px; padding: 0; font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Vos coordonnées</legend>
+<div style="clear: both; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-nom" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Nom</label>
+<input id="f-nom" type="text" autocomplete="name" placeholder="Prénom et nom" value="{{ form.nom }}" onChange="{{ on.nom }}" aria-invalid="{{ err.nom }}" aria-describedby="e-nom" style="height: 44px; padding: 0 12px; border: {{ err.nomBorder }}; border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+<sc-if value="{{ err.nom }}" hint-placeholder-val="{{ false }}"><span id="e-nom" style="font-size: 14px; line-height: 20px; color: var(--danger)">Entrez votre nom.</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-entreprise" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Entreprise <span style="font-weight: 400; color: var(--ink-muted)">(facultatif)</span></label>
+<input id="f-entreprise" type="text" autocomplete="organization" style="height: 44px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-courriel" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Courriel</label>
+<input id="f-courriel" type="email" autocomplete="email" placeholder="nom@entreprise.ca" value="{{ form.courriel }}" onChange="{{ on.courriel }}" aria-invalid="{{ err.courriel }}" aria-describedby="e-courriel" style="height: 44px; padding: 0 12px; border: {{ err.courrielBorder }}; border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+<sc-if value="{{ err.courriel }}" hint-placeholder-val="{{ false }}"><span id="e-courriel" style="font-size: 14px; line-height: 20px; color: var(--danger)">Entrez un courriel valide, par exemple nom@entreprise.ca.</span></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-tel" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Téléphone <span style="font-weight: 400; color: var(--ink-muted)">(facultatif)</span></label>
+<input id="f-tel" type="tel" autocomplete="tel" style="height: 44px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-role" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Vous êtes</label>
+<div style="position: relative">
+<select id="f-role" style="width: 100%; height: 44px; padding: 0 44px 0 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--surface-raised); font-size: 16px; appearance: none; -webkit-appearance: none">
+<option>Entrepreneur</option>
+<option>Designer d'intérieur</option>
+<option>Architecte</option>
+<option>Gestionnaire immobilier</option>
+<option>Particulier</option>
+</select>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; right: 12px; top: 12px; pointer-events: none"><path d="m6 9 6 6 6-6"></path></svg>
+</div>
+</div>
+</div>
+<label style="display: flex; align-items: flex-start; gap: 12px; min-height: 44px; cursor: pointer"><input type="checkbox" style="width: 20px; height: 20px; margin: 2px 0 0; flex: none; accent-color: var(--accent)"><span>J'accepte de recevoir les nouveautés de Terroa par courriel. <span style="color: var(--ink-muted)">Facultatif. Désabonnement en un clic.</span></span></label>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Vos renseignements servent uniquement à préparer et à suivre votre soumission. Ils sont accessibles à l'équipe des ventes de Terroa et conservés <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px">[durée]</span>. <a href="#">Politique de confidentialité</a></p>
+</fieldset>
+</div>
+
+<aside aria-labelledby="t-resume" style="flex: 1 1 320px; min-width: 0; position: sticky; top: 88px; display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 16px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)">
+<h2 id="t-resume" style="margin: 0; font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Résumé</h2>
+<dl style="margin: 0; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line)"><dt style="color: var(--ink-muted)">Produits</dt><dd style="margin: 0; font-weight: 600; font-variant-numeric: tabular-nums">{{ summary.products }}</dd></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line)"><dt style="color: var(--ink-muted)">Planchers</dt><dd style="margin: 0; font-weight: 600; font-variant-numeric: tabular-nums">{{ summary.boxesText }}</dd></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line)"><dt style="color: var(--ink-muted)">Panneaux acoustiques</dt><dd style="margin: 0; font-weight: 600; font-variant-numeric: tabular-nums">{{ summary.panelsText }}</dd></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)"><dt style="color: var(--ink-muted)">Surface prévue</dt><dd style="margin: 0; font-weight: 600; font-variant-numeric: tabular-nums">{{ summary.areaText }}</dd></div>
+</dl>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Prix, taxes (TPS et TVQ) et livraison sont détaillés dans la soumission.</p>
+<button type="submit" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 14px 24px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; cursor: pointer">Envoyer la demande</button>
+<p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--ink-muted)">Réponse par courriel sous <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px">[délai]</span>.</p>
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<p aria-live="polite" style="margin: 0; display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 20px; color: var(--danger)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>Vérifiez les champs signalés avant d'envoyer.</p>
+</sc-if>
+</aside>
+</form>
+</sc-if>
+
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<section aria-labelledby="t-envoye" style="max-width: 720px; display: flex; flex-direction: column; gap: 24px; padding: 48px; border-radius: 16px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--success)">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--success)"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+<h1 id="t-envoye" style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Demande envoyée</h1>
+<p style="margin: 0">Merci {{ form.nom }}. Votre soumission sera envoyée à <strong style="font-weight: 600">{{ form.courriel }}</strong> sous <span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; color: var(--ink-muted)">[délai]</span>.</p>
+<dl style="margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+<dt style="color: var(--ink-muted)">Référence</dt><dd style="margin: 0; font-weight: 600">TR-<span style="padding: 0 6px; border: 1px dashed var(--border-strong); border-radius: 6px; color: var(--ink-muted); font-weight: 500">[numéro]</span></dd>
+<dt style="color: var(--ink-muted)">Produits</dt><dd style="margin: 0">{{ summary.lineText }}</dd>
+<dt style="color: var(--ink-muted)">Chantier</dt><dd style="margin: 0">{{ form.ville }}</dd>
+</dl>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<a href="Home.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none">Retour à l'accueil</a>
+<button type="button" onClick="{{ reset }}" style="display: inline-flex; align-items: center; min-height: 44px; padding: 10px 20px; border: 1px solid var(--border-strong); border-radius: 10px; background: transparent; font-weight: 600; cursor: pointer">Modifier la demande</button>
+</div>
+</section>
+</sc-if>
+
+</main>
+
+<footer style="border-top: 1px solid var(--line)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 32px clamp(16px, 4vw, 32px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; line-height: 20px; color: var(--ink-muted)">
+<a href="Home.dc.html" style="font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600; color: var(--ink); text-decoration: none">Terroa</a>
+<nav aria-label="Liens légaux" style="display: flex; flex-wrap: wrap; gap: 8px 24px">
+<a href="#" style="color: var(--ink-muted)">Politique de confidentialité</a>
+<a href="#" style="color: var(--ink-muted)">Conditions d'utilisation</a>
+<span>Responsable des renseignements personnels : [nom, courriel]</span>
+</nav>
+<a href="#" lang="en-CA" hreflang="en-CA" style="display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600">English</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Thème"},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      qty: { cn: 21, cg: 23, ln: 6 },
+      removed: { cn: false, cg: false, ln: false },
+      form: { projet: 'Condo — rez-de-chaussée', ville: 'Laval', nom: '', courriel: '' },
+      reception: 'livraison',
+      tried: false,
+      sent: false
+    };
+  }
+
+  plural(n, one, many) {
+    return n + ' ' + (n > 1 ? many : one);
+  }
+
+  setQty(id, next) {
+    const n = Math.max(1, Math.min(9999, Math.round(next)));
+    this.setState({ qty: Object.assign({}, this.state.qty, { [id]: n }) });
+  }
+
+  errors() {
+    const f = this.state.form;
+    const shown = this.state.removed;
+    const anyItem = !(shown.cn && shown.cg && shown.ln);
+    return {
+      nom: f.nom.trim().length < 2,
+      courriel: !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.courriel.trim()),
+      ville: f.ville.trim().length < 2,
+      items: !anyItem
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const item = (id) => ({
+      show: !s.removed[id],
+      qty: String(s.qty[id]),
+      atMin: s.qty[id] <= 1,
+      dec: () => this.setQty(id, s.qty[id] - 1),
+      inc: () => this.setQty(id, s.qty[id] + 1),
+      onInput: (e) => {
+        const v = parseInt(String(e.target.value).replace(/\D/g, ''), 10);
+        this.setQty(id, isNaN(v) ? 1 : v);
+      },
+      remove: () => this.setState({ removed: Object.assign({}, s.removed, { [id]: true }) })
+    });
+    const boxes = (s.removed.cn ? 0 : s.qty.cn) + (s.removed.cg ? 0 : s.qty.cg);
+    const panels = s.removed.ln ? 0 : s.qty.ln;
+    const area = (s.removed.cn ? 0 : 374) + (s.removed.cg ? 0 : 402);
+    const products = ['cn', 'cg', 'ln'].filter((k) => !s.removed[k]).length;
+    const e = s.tried ? this.errors() : { nom: false, courriel: false, ville: false, items: false };
+    const bad = '2px solid var(--danger)';
+    const ok = '1px solid var(--border-strong)';
+    const field = (key) => (val) => this.setState({ form: Object.assign({}, this.state.form, { [key]: val }) });
+    return {
+      themeClass: (this.props.theme ?? 'light') === 'dark' ? 'dark' : '',
+      items: { cn: item('cn'), cg: item('cg'), ln: item('ln') },
+      hasItems: products > 0,
+      noItems: products === 0,
+      restore: () => this.setState({ removed: { cn: false, cg: false, ln: false } }),
+      summary: {
+        products: products,
+        boxesText: boxes > 0 ? this.plural(boxes, 'boîte', 'boîtes') : '—',
+        panelsText: panels > 0 ? this.plural(panels, 'panneau', 'panneaux') : '—',
+        areaText: area > 0 ? area.toLocaleString('fr-CA') + ' pi²' : '—',
+        lineText: [
+          this.plural(products, 'produit', 'produits'),
+          boxes > 0 ? this.plural(boxes, 'boîte', 'boîtes') : '',
+          panels > 0 ? this.plural(panels, 'panneau', 'panneaux') : ''
+        ].filter(Boolean).join(' · ')
+      },
+      headerLabel: 'Soumission, ' + this.plural(products, 'produit', 'produits'),
+      form: s.form,
+      on: {
+        projet: (ev) => field('projet')(ev.target.value),
+        ville: (ev) => field('ville')(ev.target.value),
+        nom: (ev) => field('nom')(ev.target.value),
+        courriel: (ev) => field('courriel')(ev.target.value)
+      },
+      err: {
+        nom: e.nom, courriel: e.courriel, ville: e.ville, items: e.items,
+        nomBorder: e.nom ? bad : ok,
+        courrielBorder: e.courriel ? bad : ok,
+        villeBorder: e.ville ? bad : ok
+      },
+      hasErrors: e.nom || e.courriel || e.ville || e.items,
+      recep: {
+        livraison: s.reception === 'livraison',
+        ramassage: s.reception === 'ramassage',
+        pickLivraison: () => this.setState({ reception: 'livraison' }),
+        pickRamassage: () => this.setState({ reception: 'ramassage' })
+      },
+      submit: (ev) => {
+        if (ev && ev.preventDefault) ev.preventDefault();
+        const errs = this.errors();
+        if (errs.nom || errs.courriel || errs.ville || errs.items) {
+          this.setState({ tried: true });
+        } else {
+          this.setState({ sent: true, tried: false });
+        }
+      },
+      reset: () => this.setState({ sent: false }),
+      sent: s.sent,
+      notSent: !s.sent
+    };
+  }
+}
+</script>
+</body>
+</html>

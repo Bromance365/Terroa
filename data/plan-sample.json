@@ -1,0 +1,153 @@
+{
+  "_meta": "MOCK plan extraction used by the phase 1 plan reader. Shape follows src/lib/plan-reader/extraction.schema.json (plus UI fields). Replaced by POST /api/plans/{id}/analyze in phase 3.",
+  "file": "plan-rdc.pdf",
+  "pages": 1,
+  "scale": "1/4\" = 1'-0\"",
+  "image": "plan-rdc.svg",
+  "rooms": [
+    {
+      "n": 1,
+      "label": "SALON",
+      "name_fr": "Salon",
+      "name_en": "Living room",
+      "lengthFt": 18.1667,
+      "widthFt": 14,
+      "confidence": "high",
+      "reason": "",
+      "bbox": {
+        "x": 4,
+        "y": 6.43,
+        "w": 41.4,
+        "h": 46
+      },
+      "product": "p-chene-naturel",
+      "included": true
+    },
+    {
+      "n": 2,
+      "label": "CUISINE",
+      "name_fr": "Cuisine",
+      "name_en": "Kitchen",
+      "lengthFt": 12,
+      "widthFt": 10,
+      "confidence": "high",
+      "reason": "",
+      "bbox": {
+        "x": 45.4,
+        "y": 6.43,
+        "w": 27.6,
+        "h": 32.86
+      },
+      "product": "p-chene-naturel",
+      "included": true
+    },
+    {
+      "n": 3,
+      "label": "CH. PRINC.",
+      "name_fr": "Chambre principale",
+      "name_en": "Primary bedroom",
+      "lengthFt": 9.8333,
+      "widthFt": 14,
+      "confidence": "high",
+      "reason": "",
+      "bbox": {
+        "x": 73,
+        "y": 6.43,
+        "w": 23,
+        "h": 46
+      },
+      "product": "p-chene-gris",
+      "included": true
+    },
+    {
+      "n": 4,
+      "label": "CORRIDOR",
+      "name_fr": "Corridor",
+      "name_en": "Hallway",
+      "lengthFt": 12,
+      "widthFt": 4,
+      "confidence": "check",
+      "reason": "Cote partiellement lisible sur le plan. Confirmez la largeur.",
+      "bbox": {
+        "x": 45.4,
+        "y": 39.29,
+        "w": 27.6,
+        "h": 13.14
+      },
+      "product": null,
+      "included": true
+    },
+    {
+      "n": 5,
+      "label": "CHAMBRE 2",
+      "name_fr": "Chambre 2",
+      "name_en": "Bedroom 2",
+      "lengthFt": 12,
+      "widthFt": 12,
+      "confidence": "high",
+      "reason": "",
+      "bbox": {
+        "x": 4,
+        "y": 52.43,
+        "w": 27.6,
+        "h": 39.43
+      },
+      "product": "p-chene-gris",
+      "included": true
+    },
+    {
+      "n": 6,
+      "label": "S.D.B.",
+      "name_fr": "Salle de bain",
+      "name_en": "Bathroom",
+      "lengthFt": 8,
+      "widthFt": 12,
+      "confidence": "high",
+      "reason": "",
+      "bbox": {
+        "x": 31.6,
+        "y": 52.43,
+        "w": 18.4,
+        "h": 39.43
+      },
+      "product": null,
+      "included": false
+    },
+    {
+      "n": 7,
+      "label": "ENTRÉE",
+      "name_fr": "Entrée",
+      "name_en": "Entrance",
+      "lengthFt": 10,
+      "widthFt": 12,
+      "confidence": "check",
+      "reason": "Placard inclus dans la surface. Retirez-le au besoin.",
+      "bbox": {
+        "x": 50,
+        "y": 52.43,
+        "w": 23,
+        "h": 39.43
+      },
+      "product": null,
+      "included": true
+    },
+    {
+      "n": 8,
+      "label": "BUREAU",
+      "name_fr": "Bureau",
+      "name_en": "Office",
+      "lengthFt": 10,
+      "widthFt": 12,
+      "confidence": "high",
+      "reason": "",
+      "bbox": {
+        "x": 73,
+        "y": 52.43,
+        "w": 23,
+        "h": 39.43
+      },
+      "product": "p-chene-gris",
+      "included": true
+    }
+  ]
+}

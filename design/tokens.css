@@ -1,0 +1,129 @@
+/*
+ * Terroa — design tokens
+ * Source: "Vy Truong" baseline design system (tokens.json v1, artifact version 1790981713-e9a3),
+ * applied to the Terroa canvas on 2026-10-02. Values are copied verbatim; do not edit them here.
+ * Change the design system first, then regenerate this file.
+ *
+ * Usage rules (from the system README):
+ * - Build on surface / surface-raised; text in ink, secondary text in ink-muted.
+ * - Primary actions and links use accent with on-accent text.
+ * - copper: emphasis, at most once per screen.
+ * - danger / success always carry a word or an icon, never colour alone.
+ * - line is for dividers only; inputs and outline buttons use border-strong.
+ * - Never hard-code hex values in components: use these variables or the Tailwind theme below.
+ */
+
+:root,
+[data-theme="light"],
+.theme-light {
+  --surface: #faf8f4;
+  --surface-raised: #ffffff;
+  --ink: #1b1d22;
+  --ink-muted: #565b66;
+  --line: #d9d4ca;
+  --border-strong: #7a7f8a;
+  --accent: #0b5d57;
+  --on-accent: #ffffff;
+  --copper: #b4531f;
+  --danger: #b3261e;
+  --success: #0b6b8a;
+}
+
+/* Dark theme is defined by the system but is opt-in for the public site (decision pending, see HANDOFF.md). */
+[data-theme="dark"],
+.theme-dark {
+  --surface: #14161a;
+  --surface-raised: #1d2026;
+  --ink: #f1eee8;
+  --ink-muted: #aab0bb;
+  --line: #2e323a;
+  --border-strong: #7d8491;
+  --accent: #5fc4bb;
+  --on-accent: #0c1a19;
+  --copper: #e08a55;
+  --danger: #ff8a7a;
+  --success: #6cc6e8;
+}
+
+:root {
+  /* Type families. In Next.js load both with next/font/google (variable: "--font-fraunces" / "--font-dm-sans")
+     so they are self-hosted at build time: no runtime call to Google. */
+  --font-display-stack: var(--font-fraunces, "Fraunces"), Georgia, "Times New Roman", serif;
+  --font-sans-stack: var(--font-dm-sans, "DM Sans"), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Spacing (8 px grid). Section rhythm on desktop is a composite: 64 px (2 x space-8) and 96 px (3 x space-8). */
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius */
+  --radius-sm: 6px;  /* inputs, tags */
+  --radius-md: 10px; /* buttons, cards */
+  --radius-lg: 16px; /* sheets, panels, feature blocks */
+
+  /* Derived values used by the mockups (not in the base system; keep the list short) */
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+  --shadow-float: 0 1px 2px rgb(0 0 0 / 0.08), 0 8px 24px rgb(0 0 0 / 0.12); /* floating chip over a photo, toast */
+  --container-max: 1280px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --target-min: 44px;  /* minimum touch target */
+  --target-lg: 52px;   /* hero CTA, sticky mobile bar */
+}
+
+/*
+ * Tailwind CSS v4 mapping. Import after tokens: @import "tailwindcss"; then this block.
+ * Tailwind's default spacing step is 4 px, so p-2 / p-4 / p-6 / p-8 already equal space-2 / 4 / 6 / 8.
+ */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-copper: var(--copper);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  --font-display: var(--font-display-stack);
+  --font-sans: var(--font-sans-stack);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Type scale: display / h1 / h2 in Fraunces 600; body / small / label in DM Sans */
+  --text-display: 56px;
+  --text-display--line-height: 60px;
+  --text-h1: 36px;
+  --text-h1--line-height: 42px;
+  --text-h2: 24px;
+  --text-h2--line-height: 30px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-small: 14px;
+  --text-small--line-height: 20px;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--letter-spacing: 0.06em;
+  --text-label--font-weight: 600;
+}
+
+/* Base behaviour shared by every page */
+:focus-visible {
+  outline: 2px solid transparent; /* keeps a ring in Windows high-contrast mode */
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

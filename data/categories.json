@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "id": "vinyl",
+      "key": "/flooring/vinyl",
+      "kind": "floor",
+      "name_fr": "Planchers de vinyle",
+      "name_en": "Vinyl flooring",
+      "image": "scene-05.svg",
+      "sort": 1,
+      "lead_key": "vinyl"
+    },
+    {
+      "id": "coverings",
+      "key": "/floor-coverings",
+      "kind": "floor",
+      "name_fr": "Revêtements de sol",
+      "name_en": "Floor coverings",
+      "image": "scene-04.svg",
+      "sort": 2
+    },
+    {
+      "id": "panels",
+      "key": "/acoustic-panels",
+      "kind": "panel",
+      "name_fr": "Panneaux acoustiques",
+      "name_en": "Acoustic panels",
+      "image": "scene-06.svg",
+      "sort": 3
+    }
+  ]
+}
