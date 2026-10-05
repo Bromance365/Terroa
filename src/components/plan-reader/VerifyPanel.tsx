@@ -34,6 +34,8 @@ export function VerifyPanel({
   includedArea,
   notice,
   added,
+  demo,
+  planImage,
   headingRef,
   onRoomChange,
   onAdd,
@@ -44,6 +46,8 @@ export function VerifyPanel({
   includedArea: number;
   notice: SummaryNotice;
   added: { lines: number; area: number } | null;
+  demo: boolean;
+  planImage: { url: string; ratio: string } | null;
   headingRef: RefObject<HTMLHeadingElement | null>;
   onRoomChange: (id: string, patch: RoomPatch) => void;
   onAdd: () => void;
@@ -65,14 +69,19 @@ export function VerifyPanel({
     <div className="flex flex-wrap gap-x-8 gap-y-8 lg:gap-x-12">
       <section aria-labelledby="pr-plan-title" className="flex min-w-0 flex-[1_1_380px] flex-col gap-4 lg:self-start">
         <h2 id="pr-plan-title">{t("planReader.plan")}</h2>
-        <PlanViewer
-          imageUrl={SAMPLE_PLAN_IMAGE}
-          alt={t("planUi.viewerAlt", { count: rooms.length })}
-          overlays={overlays}
-          zoomable
-          zoomInLabel={t("planReader.zoomIn")}
-          zoomOutLabel={t("planReader.zoomOut")}
-        />
+        {demo || planImage ? (
+          <PlanViewer
+            imageUrl={demo ? SAMPLE_PLAN_IMAGE : (planImage?.url ?? SAMPLE_PLAN_IMAGE)}
+            ratio={demo ? undefined : planImage?.ratio}
+            alt={t("planUi.viewerAlt", { count: rooms.length })}
+            overlays={overlays}
+            zoomable
+            zoomInLabel={t("planReader.zoomIn")}
+            zoomOutLabel={t("planReader.zoomOut")}
+          />
+        ) : (
+          <Alert kind="info">{t("planUi.pdfNoPreview")}</Alert>
+        )}
         <ul aria-label={t("planUi.legend")} className="small flex flex-wrap gap-x-5 gap-y-2 text-ink-muted">
           <li className="flex items-center gap-2">
             <Swatch kind="included" />
@@ -87,7 +96,7 @@ export function VerifyPanel({
             {t("planReader.legendExcluded")}
           </li>
         </ul>
-        <p className="small text-ink-muted">{t("planUi.sampleNote")}</p>
+        {demo ? <p className="small text-ink-muted">{t("planUi.sampleNote")}</p> : null}
         <PrivacyNotice />
       </section>
 

@@ -525,7 +525,8 @@
     "scaleNone": "not shown",
     "fileLabel": "Uploaded plan",
     "noRoomsIncluded": "Include at least one room with its dimensions before opening the calculator.",
-    "roomsCount": "{count, plural, one {# room} other {# rooms}}"
+    "roomsCount": "{count, plural, one {# room} other {# rooms}}",
+    "pdfNoPreview": "Preview is not available for PDFs. Use the room list to check each area."
   },
   "legal": {
     "draftNotice": "Draft version. Terroa must complete this text and have it reviewed by legal counsel before launch. Values in square brackets are still to be supplied.",

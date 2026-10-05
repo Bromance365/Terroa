@@ -7,7 +7,7 @@ import { Alert } from "@/components/ui/controls";
 import { getProduct } from "@/lib/catalog";
 import { formatSqft } from "@/lib/format";
 import { addToQuote, showToast } from "@/lib/quote-store";
-import { analyzePlan, AnalysisAborted, type AnalysisResult } from "@/lib/plan-reader/analyzer";
+import { analyzePlan, AnalysisAborted, AnalysisError, deleteRemotePlan, type AnalysisResult } from "@/lib/plan-reader/analyzer";
 import {
   baseFileName,
   buildUiRooms,
@@ -18,7 +18,7 @@ import {
   planQuoteLines,
 } from "@/lib/plan-reader/compute";
 import { PLAN_IMPORT_KEY, type UiRoom } from "@/lib/plan-reader/types";
-import { validatePlanFile, type PlanFileProblem } from "@/lib/plan-reader/validate-file";
+import { validatePlanFile, type PlanFileKind, type PlanFileProblem } from "@/lib/plan-reader/validate-file";
 import type { Locale } from "@/i18n/routing";
 import { AnalyzingPanel } from "./AnalyzingPanel";
 import { DeleteDialog } from "./DeleteDialog";
@@ -31,7 +31,7 @@ import { VerifyPanel } from "./VerifyPanel";
 import type { SummaryNotice } from "./PlanSummary";
 
 type Phase = "upload" | "analyzing" | "verify" | "unreadable";
-type ErrorKind = PlanFileProblem | "analyze";
+type ErrorKind = PlanFileProblem | "analyze" | "rate";
 
 /**
  * The plan reader. Four states: upload, analysing, verify, unreadable.
@@ -51,6 +51,8 @@ export function PlanReader({ title, lead }: { title: ReactNode; lead: ReactNode 
   const [notice, setNotice] = useState<SummaryNotice>(null);
   const [added, setAdded] = useState<{ sig: string; lines: number; area: number } | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [planImage, setPlanImage] = useState<{ url: string; ratio: string } | null>(null);
+  const remoteRef = useRef<{ id: string; token: string } | null>(null);
 
   const run = useRef<AbortController | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -66,10 +68,17 @@ export function PlanReader({ title, lead }: { title: ReactNode; lead: ReactNode 
   }, [phase]);
 
   // Cancel any pending reading when leaving the page.
-  useEffect(() => () => run.current?.abort(), []);
+  useEffect(
+    () => () => {
+      run.current?.abort();
+      if (remoteRef.current) void deleteRemotePlan(remoteRef.current);
+    },
+    [],
+  );
+  useEffect(() => () => (planImage ? URL.revokeObjectURL(planImage.url) : undefined), [planImage]);
 
   const startAnalysis = useCallback(
-    async (f: File) => {
+    async (f: File, kind: PlanFileKind) => {
       run.current?.abort();
       const controller = new AbortController();
       run.current = controller;
@@ -79,23 +88,41 @@ export function PlanReader({ title, lead }: { title: ReactNode; lead: ReactNode 
       setAnalysis(null);
       setRooms([]);
       setFile(f);
+      setPlanImage(null);
+      if (remoteRef.current) void deleteRemotePlan(remoteRef.current); // replacing a plan deletes the previous one
+      remoteRef.current = null;
       setPhase("analyzing");
       try {
         // Mock only: `?demo=unreadable` forces the unreadable state.
         const demo = new URLSearchParams(window.location.search).get("demo") === "unreadable" ? "unreadable" : null;
-        const result = await analyzePlan(f, { signal: controller.signal, demo, locale });
-        if (controller.signal.aborted) return;
+        const result = await analyzePlan(f, { signal: controller.signal, demo, locale, kind });
+        if (controller.signal.aborted) {
+          if (result.remote) void deleteRemotePlan(result.remote);
+          return;
+        }
+        remoteRef.current = result.remote ?? null;
         setAnalysis(result);
         if (!isReadable(result.extraction)) {
           setPhase("unreadable");
           return;
         }
         setRooms(buildUiRooms(result, locale));
+        if (!result.demo && kind !== "pdf") {
+          // Images can be shown under the overlays; PDFs cannot be drawn without a renderer.
+          const url = URL.createObjectURL(f);
+          const ratio = await new Promise<string>((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(`${img.naturalWidth} / ${img.naturalHeight}`);
+            img.onerror = () => resolve("1000 / 700");
+            img.src = url;
+          });
+          setPlanImage({ url, ratio });
+        }
         setPhase("verify");
       } catch (e) {
         if (controller.signal.aborted || e instanceof AnalysisAborted) return;
         setFile(null);
-        setError("analyze");
+        setError(e instanceof AnalysisError && e.code === "rate_limited" ? "rate" : "analyze");
         setPhase("upload");
       }
     },
@@ -109,13 +136,16 @@ export function PlanReader({ title, lead }: { title: ReactNode; lead: ReactNode 
         setError(check.problem);
         return;
       }
-      void startAnalysis(f);
+      void startAnalysis(f, check.kind);
     },
     [startAnalysis],
   );
 
   const reset = useCallback(() => {
     run.current?.abort();
+    if (remoteRef.current) void deleteRemotePlan(remoteRef.current);
+    remoteRef.current = null;
+    setPlanImage(null);
     setFile(null);
     setAnalysis(null);
     setRooms([]);
@@ -178,7 +208,7 @@ export function PlanReader({ title, lead }: { title: ReactNode; lead: ReactNode 
   const current: 1 | 2 | 3 = phase === "verify" ? (addedNow ? 3 : 2) : 1;
   const steps: [string, string, string] = [t("planReader.stepUpload"), t("planReader.stepVerify"), t("planReader.stepAdd")];
   const errorText =
-    error === "type" ? t("errors.fileType") : error === "size" ? t("errors.fileTooLarge") : error === "heic" ? t("planUi.errorHeic") : error === "analyze" ? t("planUi.errorAnalyze") : "";
+    error === "type" ? t("errors.fileType") : error === "size" ? t("errors.fileTooLarge") : error === "heic" ? t("planUi.errorHeic") : error === "analyze" ? t("planUi.errorAnalyze") : error === "rate" ? t("errors.rateLimited") : "";
 
   return (
     <div className="container-page section-y">
@@ -228,6 +258,8 @@ export function PlanReader({ title, lead }: { title: ReactNode; lead: ReactNode 
               includedArea={includedArea}
               notice={notice}
               added={addedNow}
+              demo={analysis.demo}
+              planImage={planImage}
               headingRef={headingRef}
               onRoomChange={updateRoom}
               onAdd={handleAdd}

@@ -80,6 +80,23 @@ Updated findings: F2 now excludes prices (hidden by decision) and retention valu
 
 Verdict unchanged: **READY for review, NOT READY for production** (checks 23–25 and 34–37 BLOCKED).
 
+## Phase 3 additions (5 October 2026) — plan reader backend, off by default
+
+Approved by Vy: Anthropic as the provider for the plan reader. Not yet decided or done: the model name (`ANTHROPIC_MODEL` is required, no default; `claude-opus-5-5` suggested) and the privacy impact assessment (EFVP), so the live reader stays disabled until `PLAN_READER_ENABLED=true`.
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 38 | Test suite | PASS | `npm test`: 10 files, 98 tests (22 new: server plan service/model/guards, client analyzer) |
+| 39 | Contract: `POST /api/plans`, `POST /api/plans/{id}/analyze`, `DELETE /api/plans/{id}` | PASS (fakes) | Type/size rejected before the database; random storage key; token stored as SHA-256 only and compared in constant time; wrong token = 404; one analysis per upload (409); upload deleted by token; all routes 503 when not enabled (verified on the production build) |
+| 40 | Malformed and hostile files | PASS (unit) | SVG renamed to an image: refused by magic bytes; PDF with JavaScript/EmbeddedFile: refused; PDF over 10 pages: refused; non-image bytes: refused by sharp |
+| 41 | EXIF / GPS in photos | PASS (unit) | A JPEG with GPS EXIF comes out of `cleanImage` with no EXIF; the stored copy is replaced by the cleaned one |
+| 42 | Prompt injection and untrusted output | PASS (unit) | System prompt states document text is data and the only output is the schema; request uses structured outputs (no forced `tool_choice`, which current models reject), no sampling params; hostile output (RTL override, 99 999 ft, negative, out-of-range bbox, extra fields) is sanitised, dimensions become null and the room "illegible"; refusal, truncation and garbage return "unreadable" |
+| 43 | Model call against the real API | BLOCKED | No `ANTHROPIC_API_KEY` in this session and no model decision; spending real money needs approval |
+| 44 | Signed upload to the private bucket, real deletion, retention job on real rows | BLOCKED | Needs the service-role key in an environment (Vercel) |
+| 45 | Prompt-injection fixture against the real model | BLOCKED | Same as 43 |
+
+New findings: **F17 (Medium, privacy)**: the EFVP and written provider terms are still required before `PLAN_READER_ENABLED=true`; **F18 (Low)**: PDFs have no on-page preview in live mode (no renderer), only images show under the overlays; **F19 (Low)**: refusal fallbacks (`fallbacks: "default"`) are not implemented, a refusal shows the "unreadable" state; **F20 (Low)**: PDF page count and active-content checks are byte scans (best effort).
+
 ## Verdict
 
 **READY for phase 1 review** (UI with mock data): every phase 1 acceptance item that can be verified here passes.

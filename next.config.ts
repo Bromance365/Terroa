@@ -3,6 +3,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const isDev = process.env.NODE_ENV !== "production";
+// Plans go straight from the browser to the private Supabase bucket through a signed URL.
+const supabaseOrigin = process.env.SUPABASE_URL ? new URL(process.env.SUPABASE_URL).origin : "";
 
 // Phase 1 CSP: static pages need 'unsafe-inline' for Next's bootstrap scripts.
 // Nonce-based CSP (dynamic rendering) is a phase 4 hardening item, tracked in QA_REPORT.md.
@@ -12,7 +14,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""}`,
+  `connect-src 'self'${supabaseOrigin ? ` ${supabaseOrigin}` : ""}${isDev ? " ws: wss:" : ""}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
