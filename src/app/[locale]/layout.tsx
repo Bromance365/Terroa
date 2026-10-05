@@ -65,6 +65,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <main id="main" tabIndex={-1} className="outline-none">
             {children}
           </main>
+          <div id="sticky-slot" />
           <SiteFooter slugPairs={getSlugPairs()} />
           <ToastHost />
         </NextIntlClientProvider>

@@ -3,6 +3,7 @@
 import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import {
+  boxesForArea,
   ceilToStep,
   floorQuantities,
   formatEn,
@@ -136,4 +137,12 @@ test('formatting and plurals', () => {
   assert.equal(pluralFr(0, 'panneau', 'panneaux'), '0 panneau');
   assert.equal(pluralFr(1, 'boîte', 'boîtes'), '1 boîte');
   assert.equal(pluralFr(52, 'boîte', 'boîtes'), '52 boîtes');
+});
+
+test('boxesForArea matches the product sheet example (374 sq ft + 10 % at 20 sq ft per box = 21 boxes)', () => {
+  assert.deepEqual(boxesForArea('374', 10, 20), { orderArea: 412, boxes: 21 });
+  assert.equal(boxesForArea('', 10, 20), null);
+  assert.equal(boxesForArea('374', 10, null), null);
+  assert.equal(boxesForArea('999999', 10, 20), null);
+  assert.deepEqual(boxesForArea('18,2', 10, 20), { orderArea: 21, boxes: 2 });
 });

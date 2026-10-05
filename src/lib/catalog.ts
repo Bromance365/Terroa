@@ -76,7 +76,9 @@ export const getCategories = () => categories;
 export const getProjects = () => projects;
 export const getCategory = (id: CategoryId) => categories.find((c) => c.id === id);
 export const getProduct = (id: string) => products.find((p) => p.id === id);
-export const getProductsByCategory = (id: CategoryId) => products.filter((p) => p.category === id);
+/** "Revêtements de sol" is the parent grouping: it lists every floor product, vinyl included. */
+export const getProductsByCategory = (id: CategoryId) =>
+  id === "coverings" ? products.filter((p) => p.kind === "floor") : products.filter((p) => p.category === id);
 export const getProject = (id: string) => projects.find((p) => p.id === id);
 export const getProjectsForProduct = (productId: string) => projects.filter((p) => p.products.includes(productId));
 

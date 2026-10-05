@@ -102,7 +102,6 @@ export function AnchorButton({
   ...rest
 }: CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
     <a className={buttonClasses({ variant, size, block, className })} {...rest}>
       {icon ? <Icon name={icon} /> : null}
       {children}

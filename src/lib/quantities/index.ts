@@ -192,3 +192,20 @@ export function formatEn(value: number, maxFractionDigits = 1): string {
 export function pluralFr(count: number, singular: string, plural: string): string {
   return `${formatFr(count, 0)} ${count > 1 ? plural : singular}`;
 }
+
+/**
+ * Boxes needed to cover a single area (product page quick estimate).
+ * Same rules as the calculator: waste added, order area rounded up to 1 sq ft, boxes rounded up.
+ * Returns null when the area or the coverage is not a positive number or exceeds LIMITS.maxAreaSqft.
+ */
+export function boxesForArea(
+  areaSqft: string | number,
+  wastePct: number,
+  coverageSqftPerBox: number | null,
+): { orderArea: number; boxes: number } | null {
+  const area = parsePositiveDecimal(areaSqft);
+  if (area === null || area > LIMITS.maxAreaSqft) return null;
+  if (coverageSqftPerBox === null || !(coverageSqftPerBox > 0)) return null;
+  const orderArea = ceilToStep(area * (1 + wastePct / 100), 1);
+  return { orderArea, boxes: Math.ceil(orderArea / coverageSqftPerBox - EPSILON) };
+}
