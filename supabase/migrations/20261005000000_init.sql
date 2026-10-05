@@ -1,6 +1,5 @@
--- Terroa — initial schema (HANDOFF.md section 11). NOT applied to any project yet.
--- Review before running. Dedicated Supabase project for Terroa only (no shared data or keys).
--- Region: choose Canada (Central) at project creation and verify it.
+-- Terroa — initial schema (HANDOFF.md section 11).
+-- Applied to the dedicated Terroa Supabase project (ca-central-1) on 2026-10-05. No shared data or keys.
 
 create extension if not exists pgcrypto;
 
@@ -115,6 +114,10 @@ create table public.plan_uploads (
 create index on public.quote_items (quote_request_id);
 create index on public.plan_uploads (delete_after) where deleted_at is null;
 create index on public.quote_requests (retain_until);
+create index on public.products (category_id);
+create index on public.project_products (product_id);
+create index on public.categories (parent_id);
+create index on public.plan_uploads (quote_request_id);
 
 -- Row level security: ON for every table -------------------------------------------------
 alter table public.categories enable row level security;
@@ -134,7 +137,7 @@ create policy "public read project products" on public.project_products for sele
      and exists (select 1 from public.products pr where pr.id = product_id and pr.published));
 
 -- Staff: Supabase Auth with app_metadata.role = 'staff' (MFA enforced in the Auth settings).
-create function public.is_staff() returns boolean language sql stable as $$
+create function public.is_staff() returns boolean language sql stable set search_path = '' as $$
   select coalesce((auth.jwt() -> 'app_metadata' ->> 'role') = 'staff', false)
 $$;
 
@@ -149,6 +152,10 @@ create policy "staff read plans" on public.plan_uploads for select to authentica
 -- No policy grants anon any access to quote_requests, quote_items or plan_uploads: default deny.
 -- The server writes with the service role (bypasses RLS) after zod validation; never expose that key to the browser.
 
--- Storage buckets (create in the dashboard or via the CLI):
---   product-media: public read, staff write.
---   plans: PRIVATE, no public URLs; signed upload URLs only; server reads with the service role.
+-- Storage buckets ---------------------------------------------------------------------
+-- product-media: public read (public bucket), writes only by staff/service role.
+-- plans: PRIVATE, no public URLs, no policies for anon/authenticated: signed upload URLs and server reads only.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types) values
+  ('product-media', 'product-media', true, 10485760, array['image/jpeg', 'image/png', 'image/webp', 'application/pdf']),
+  ('plans', 'plans', false, 20971520, array['application/pdf', 'image/jpeg', 'image/png'])
+on conflict (id) do nothing;

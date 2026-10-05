@@ -69,10 +69,12 @@ Decisions from Vy: prices hidden ("Prix sur soumission"), hosting Vercel, retent
 | 31 | Retention job + cron route | PASS (fake client) / route fails closed | Removes expired plan files, keeps an audit timestamp, purges expired quotes; `GET /api/cron/retention` returns 503 without `CRON_SECRET`, 401 on a wrong bearer (timing-safe compare) |
 | 32 | Browser regression after changes | PASS | Scripted flows re-run: all PASS; `/api/quotes` returns a reference in no-database mode and logs `stored:false` with no personal data |
 | 33 | Service-role key stays server-side | PASS | `server-only` import on all server modules (client import fails the build); build output grep for key names still empty |
-| 34 | Supabase schema + RLS against a real project | BLOCKED | No project/credentials. Migration `supabase/migrations/20261005000000_init.sql` is written, not applied |
-| 35 | Authorized/denied access with isolated accounts (anon vs staff) | BLOCKED | Needs the staging project (see `supabase/README.md`) |
+| 34 | Supabase schema + RLS against a real project | PASS | Migration applied to project `yceqveccwdmzgkkamupi` (ca-central-1); RLS enabled on all 7 tables; buckets `product-media` (public) and `plans` (private); security advisor: 0 findings |
+| 35 | Authorized/denied access (anon, non-staff, staff roles) | PASS (SQL role simulation) | 11 checks, fixtures rolled back: anon reads published products/consented projects only, 0 rows from quote tables, insert and update denied; non-staff 0 quote rows; staff sees quotes and drafts. Not tested through the REST API with real Auth users (needs staff accounts) |
 | 36 | Real email delivery, SPF/DKIM on the sending domain | BLOCKED | Needs Resend account, verified domain, `MAIL_FROM`, `QUOTE_NOTIFY_TO` |
 | 37 | Vercel cron execution | BLOCKED | Not deployed; `vercel.json` schedules `0 7 * * *` UTC |
+
+New finding F16 (Low): the quote API runs in no-database mode until `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are set in Vercel (checks 36–37 stay BLOCKED).
 
 Updated findings: F2 now excludes prices (hidden by decision) and retention values (proposed, not final); F6 still open (rate limiter in memory, no bot check); new F15 (Medium): privacy policy still says `[durée]` and `[N] jours` until Terroa confirms the retention periods in `src/lib/retention.ts`.
 
