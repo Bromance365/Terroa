@@ -1,0 +1,193 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Calculator.dc.html": {
+      "expand": "fill",
+      "h": 1300,
+      "is_interactive": true,
+      "title": "Calculateur de quantités",
+      "w": 1440,
+      "x": 0,
+      "y": 11020
+    },
+    "Category.dc.html": {
+      "expand": "fill",
+      "h": 1760,
+      "is_interactive": true,
+      "title": "Catégorie — Planchers de vinyle",
+      "w": 1440,
+      "x": 1520,
+      "y": 5860
+    },
+    "Components.dc.html": {
+      "expand": "fill",
+      "h": 4320,
+      "title": "Composants",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Gallery.dc.html": {
+      "expand": "fill",
+      "h": 2160,
+      "is_interactive": true,
+      "title": "Réalisations",
+      "w": 1440,
+      "x": 3040,
+      "y": 11020
+    },
+    "Home.dc.html": {
+      "expand": "fill",
+      "h": 4740,
+      "is_interactive": true,
+      "title": "Accueil",
+      "w": 1440,
+      "x": 0,
+      "y": 5860
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 5440,
+      "title": "Fondations",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "MobileCalculator.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Mobile — Calculateur",
+      "w": 390,
+      "x": 940,
+      "y": 13600
+    },
+    "MobileHome.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Mobile — Accueil",
+      "w": 390,
+      "x": 0,
+      "y": 13600
+    },
+    "MobilePlanReader.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Mobile — Lecteur de plans",
+      "w": 390,
+      "x": 1410,
+      "y": 13600
+    },
+    "MobileProduct.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Mobile — Produit",
+      "w": 390,
+      "x": 470,
+      "y": 13600
+    },
+    "MobileQuote.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Mobile — Soumission",
+      "w": 390,
+      "x": 1880,
+      "y": 13600
+    },
+    "PlanReader.dc.html": {
+      "expand": "fill",
+      "h": 1620,
+      "is_interactive": true,
+      "title": "Lecteur de plans",
+      "w": 1440,
+      "x": 1520,
+      "y": 11020
+    },
+    "Product.dc.html": {
+      "expand": "fill",
+      "h": 2760,
+      "is_interactive": true,
+      "title": "Produit",
+      "w": 1440,
+      "x": 3040,
+      "y": 5860
+    },
+    "QuoteBasket.dc.html": {
+      "expand": "fill",
+      "h": 1900,
+      "is_interactive": true,
+      "title": "Panier de soumission",
+      "w": 1440,
+      "x": 4560,
+      "y": 5860
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-02T23:12:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/code/artifact/e076b314-eb99-441d-ae69-a9bbb4b7ca44",
+      "copiedAt": "2026-10-02T23:12:00Z",
+      "namespace": "vy-truong",
+      "title": "Vy Truong",
+      "version": "1790981713-e9a3"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "titleDs": {
+      "kind": "title1",
+      "maxW": 2960,
+      "text": "Système de design",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "titleFlow": {
+      "kind": "title1",
+      "maxW": 6000,
+      "text": "Parcours d'achat — ordinateur",
+      "w": 240,
+      "x": 0,
+      "y": 5560
+    },
+    "titleMobile": {
+      "kind": "title1",
+      "maxW": 2270,
+      "text": "Mobile",
+      "w": 240,
+      "x": 0,
+      "y": 13300
+    },
+    "titleTools": {
+      "kind": "title1",
+      "maxW": 4480,
+      "text": "Outils et réalisations — ordinateur",
+      "w": 240,
+      "x": 0,
+      "y": 10720
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Components.dc.html",
+    "Home.dc.html",
+    "Category.dc.html",
+    "Product.dc.html",
+    "QuoteBasket.dc.html",
+    "Calculator.dc.html",
+    "PlanReader.dc.html",
+    "Gallery.dc.html",
+    "MobileHome.dc.html",
+    "MobileProduct.dc.html",
+    "MobileCalculator.dc.html",
+    "MobilePlanReader.dc.html",
+    "MobileQuote.dc.html"
+  ],
+  "pages": [],
+  "title": "Terroa — refonte terroa.ca"
+}

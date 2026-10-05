@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<title>Terroa mobile — Calculateur</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;display=swap">
+<style>
+body{margin:0}
+.tr,.tr .light{--surface:#faf8f4;--surface-raised:#ffffff;--ink:#1b1d22;--ink-muted:#565b66;--line:#d9d4ca;--border-strong:#7a7f8a;--accent:#0b5d57;--on-accent:#ffffff;--copper:#b4531f;--danger:#b3261e;--success:#0b6b8a;--display:"Fraunces",Georgia,"Times New Roman",serif;--sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+.tr.dark,.tr .dark{--surface:#14161a;--surface-raised:#1d2026;--ink:#f1eee8;--ink-muted:#aab0bb;--line:#2e323a;--border-strong:#7d8491;--accent:#5fc4bb;--on-accent:#0c1a19;--copper:#e08a55;--danger:#ff8a7a;--success:#6cc6e8}
+.tr *{box-sizing:border-box}
+.tr button,.tr input,.tr select,.tr textarea{font:inherit;color:inherit}
+.tr a{color:var(--accent)}
+.tr :focus-visible{outline:2px solid transparent;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
+</style>
+</helmet>
+<div class="tr {{themeClass}}" style="position: relative; width: 390px; height: 844px; overflow: hidden; display: flex; flex-direction: column; background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 24px">
+<header style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 64px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--line); background: var(--surface)">
+<a href="MobileHome.dc.html" style="font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600; color: var(--ink); text-decoration: none">Terroa</a>
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="MobileQuote.dc.html" aria-label="Soumission, 3 produits" style="position: relative; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--ink)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span style="position: absolute; top: 4px; right: 2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-size: 12px; line-height: 20px; font-weight: 600; text-align: center">3</span></a>
+<button type="button" aria-label="Ouvrir le menu" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg></button>
+</div>
+</header>
+<main style="flex: 1 1 auto; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; padding: 20px 16px 24px">
+<h1 style="margin: 0; font-family: var(--display); font-size: 36px; line-height: 42px; font-weight: 600">Calculateur</h1>
+<div style="display: flex; padding: 4px; gap: 4px; border-radius: 10px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--border-strong)">
+<button type="button" aria-pressed="true" style="flex: 1 1 0; min-height: 44px; border: 0; border-radius: 6px; background: var(--ink); color: var(--surface); font-weight: 600; cursor: pointer">Plancher</button>
+<button type="button" aria-pressed="false" style="flex: 1 1 0; min-height: 44px; border: 0; border-radius: 6px; background: transparent; font-weight: 600; cursor: pointer">Panneaux</button>
+</div>
+<section aria-labelledby="mc-pieces" style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h2 id="mc-pieces" style="margin: 0; font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600">Pièces</h2>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">7 pièces · plan RDC</span>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 8px 12px 16px; border-radius: 10px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)"><span style="flex: 1 1 auto; display: flex; flex-direction: column"><span style="font-weight: 600">Salon</span><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">18,2 × 14 pi</span></span><span style="font-weight: 600; font-variant-numeric: tabular-nums">254,8 pi²</span><button type="button" aria-label="Modifier Salon" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; color: var(--ink-muted); cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg></button></li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 8px 12px 16px; border-radius: 10px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)"><span style="flex: 1 1 auto; display: flex; flex-direction: column"><span style="font-weight: 600">Cuisine</span><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">12 × 10 pi</span></span><span style="font-weight: 600; font-variant-numeric: tabular-nums">120 pi²</span><button type="button" aria-label="Modifier Cuisine" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; color: var(--ink-muted); cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg></button></li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 8px 12px 16px; border-radius: 10px; background: var(--surface-raised); box-shadow: inset 0 0 0 1px var(--line)"><span style="flex: 1 1 auto; display: flex; flex-direction: column"><span style="font-weight: 600">Chambre principale</span><span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">9,8 × 14 pi</span></span><span style="font-weight: 600; font-variant-numeric: tabular-nums">137,2 pi²</span><button type="button" aria-label="Modifier Chambre principale" style="width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; color: var(--ink-muted); cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg></button></li>
+</ul>
+<a href="Calculator.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; text-decoration: none">Voir les 4 autres pièces<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a>
+<button type="button" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--surface-raised); font-weight: 600; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Ajouter une pièce</button>
+</section>
+<section aria-labelledby="mc-perte" style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="mc-perte" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em">Perte ajoutée</h2>
+<div style="display: flex; gap: 8px">
+<button type="button" aria-pressed="false" style="flex: 1 1 0; min-height: 44px; border: 1px solid var(--border-strong); border-radius: 10px; background: transparent; font-weight: 600; cursor: pointer">5 %</button>
+<button type="button" aria-pressed="true" style="flex: 1 1 0; min-height: 44px; border: 2px solid var(--accent); border-radius: 10px; background: var(--surface); color: var(--accent); font-weight: 600; cursor: pointer">10 %</button>
+<button type="button" aria-pressed="false" style="flex: 1 1 0; min-height: 44px; border: 1px solid var(--border-strong); border-radius: 10px; background: transparent; font-weight: 600; cursor: pointer">15 %</button>
+</div>
+</section>
+</main>
+<div style="flex: none; display: flex; align-items: center; gap: 16px; padding: 12px 16px 16px; border-top: 1px solid var(--line); background: var(--surface-raised)">
+<div aria-live="polite" style="flex: 1 1 auto; display: flex; flex-direction: column">
+<span style="font-family: var(--display); font-size: 24px; line-height: 30px; font-weight: 600; color: var(--copper); font-variant-numeric: tabular-nums">52 boîtes</span>
+<span style="font-size: 14px; line-height: 20px; color: var(--ink-muted)">1 039 pi² · 20 pi² par boîte</span>
+</div>
+<a href="MobileQuote.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 20px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none">Ajouter</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Thème"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { themeClass: (this.props.theme ?? 'light') === 'dark' ? 'dark' : '' };
+  }
+}
+</script>
+</body>
+</html>

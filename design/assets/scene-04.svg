@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" preserveAspectRatio="xMidYMid slice">
+<rect width="1600" height="1000" fill="#e2ded6"></rect>
+<polygon points="96,0 480,0 672,640 256,640" fill="#ffffff" fill-opacity="0.10"></polygon>
+<rect x="128.0" y="110" width="544.0" height="530" fill="#1c1b1a"></rect>
+<rect x="134.0" y="110" width="22" height="530" fill="#c8a073"></rect>
+<rect x="153.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="165.0" y="110" width="22" height="530" fill="#c9a174"></rect>
+<rect x="184.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="196.0" y="110" width="22" height="530" fill="#caa479"></rect>
+<rect x="215.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="227.0" y="110" width="22" height="530" fill="#cba57a"></rect>
+<rect x="246.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="258.0" y="110" width="22" height="530" fill="#cba479"></rect>
+<rect x="277.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="289.0" y="110" width="22" height="530" fill="#c59d71"></rect>
+<rect x="308.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="320.0" y="110" width="22" height="530" fill="#cba57b"></rect>
+<rect x="339.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="351.0" y="110" width="22" height="530" fill="#c69f72"></rect>
+<rect x="370.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="382.0" y="110" width="22" height="530" fill="#c39c70"></rect>
+<rect x="401.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="413.0" y="110" width="22" height="530" fill="#be986d"></rect>
+<rect x="432.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="444.0" y="110" width="22" height="530" fill="#c8a073"></rect>
+<rect x="463.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="475.0" y="110" width="22" height="530" fill="#c0996e"></rect>
+<rect x="494.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="506.0" y="110" width="22" height="530" fill="#c39c70"></rect>
+<rect x="525.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="537.0" y="110" width="22" height="530" fill="#c9a175"></rect>
+<rect x="556.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="568.0" y="110" width="22" height="530" fill="#caa378"></rect>
+<rect x="587.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="599.0" y="110" width="22" height="530" fill="#caa377"></rect>
+<rect x="618.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="630.0" y="110" width="22" height="530" fill="#be986d"></rect>
+<rect x="649.0" y="110" width="3" height="530" fill="#000" fill-opacity="0.14"></rect>
+<rect x="0" y="624" width="1600" height="16" fill="#d4d1c9"></rect>
+<rect x="0" y="640" width="1600" height="360" fill="#c8c5bf"></rect>
+<line x1="-2240.0" y1="1000" x2="-512.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="-1632.0" y1="1000" x2="-246.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="-1024.0" y1="1000" x2="20.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="-416.0" y1="1000" x2="286.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="192.0" y1="1000" x2="552.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="800.0" y1="1000" x2="818.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="1408.0" y1="1000" x2="1084.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="2016.0" y1="1000" x2="1350.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="2624.0" y1="1000" x2="1616.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="3232.0" y1="1000" x2="1882.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="3840.0" y1="1000" x2="2148.0" y2="640" stroke="#a09e99" stroke-width="1.6"></line>
+<line x1="0" y1="772.9" x2="1600" y2="772.9" stroke="#a09e99" stroke-width="1.4"></line>
+<line x1="0" y1="664.8" x2="1600" y2="664.8" stroke="#a09e99" stroke-width="1.4"></line>
+<polygon points="256,640 672,640 1120,1000 320,1000" fill="#ffffff" fill-opacity="0.09"></polygon>
+</svg>

@@ -1,0 +1,118 @@
+{
+  "_meta": "MOCK projects. Real projects need written consent from the client and the contractor (consent_on_file).",
+  "projects": [
+    {
+      "id": "proj-1",
+      "slug": "projet-1",
+      "title_fr": "[Projet]",
+      "title_en": "[Project]",
+      "city": "[Ville]",
+      "year": "[Année]",
+      "type": "residential",
+      "image": "scene-02.svg",
+      "desc_fr": "[Description du projet en deux ou trois phrases.]",
+      "desc_en": "[Project description in two or three sentences.]",
+      "products": [
+        "p-chene-fume",
+        "p-lattes-noires"
+      ],
+      "consent_on_file": true,
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "proj-2",
+      "slug": "projet-2",
+      "title_fr": "[Projet]",
+      "title_en": "[Project]",
+      "city": "[Ville]",
+      "year": "[Année]",
+      "type": "commercial",
+      "image": "scene-04.svg",
+      "desc_fr": "[Description du projet.]",
+      "desc_en": "[Project description.]",
+      "products": [
+        "p-beton-pale",
+        "p-lattes-chene"
+      ],
+      "consent_on_file": true,
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "proj-3",
+      "slug": "projet-3",
+      "title_fr": "[Projet]",
+      "title_en": "[Project]",
+      "city": "[Ville]",
+      "year": "[Année]",
+      "type": "office",
+      "image": "scene-03.svg",
+      "desc_fr": "[Description du projet.]",
+      "desc_en": "[Project description.]",
+      "products": [
+        "p-chene-gris",
+        "p-lattes-noyer"
+      ],
+      "consent_on_file": true,
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "proj-4",
+      "slug": "projet-4",
+      "title_fr": "[Projet]",
+      "title_en": "[Project]",
+      "city": "[Ville]",
+      "year": "[Année]",
+      "type": "residential",
+      "image": "scene-01.svg",
+      "desc_fr": "[Description du projet.]",
+      "desc_en": "[Project description.]",
+      "products": [
+        "p-chene-naturel",
+        "p-lattes-chene"
+      ],
+      "consent_on_file": true,
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "proj-5",
+      "slug": "projet-5",
+      "title_fr": "[Projet]",
+      "title_en": "[Project]",
+      "city": "[Ville]",
+      "year": "[Année]",
+      "type": "commercial",
+      "image": "scene-06.svg",
+      "desc_fr": "[Description du projet.]",
+      "desc_en": "[Project description.]",
+      "products": [
+        "p-frene-blanchi",
+        "p-lattes-noires"
+      ],
+      "consent_on_file": true,
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "proj-6",
+      "slug": "projet-6",
+      "title_fr": "[Projet]",
+      "title_en": "[Project]",
+      "city": "[Ville]",
+      "year": "[Année]",
+      "type": "residential",
+      "image": "scene-05.svg",
+      "desc_fr": "[Description du projet.]",
+      "desc_en": "[Project description.]",
+      "products": [
+        "p-noyer"
+      ],
+      "consent_on_file": true,
+      "published": true,
+      "featured": false
+    }
+  ]
+}
