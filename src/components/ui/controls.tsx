@@ -31,7 +31,7 @@ export function SegmentedControl<T extends string>({
             aria-pressed={pressed}
             onClick={() => onChange(o.value)}
             className={cx(
-              "min-h-[40px] flex-1 rounded-[8px] px-4 font-semibold transition-colors",
+              "min-h-[40px] flex-1 whitespace-nowrap rounded-[8px] px-4 font-semibold transition-colors",
               pressed ? "bg-ink text-surface" : "text-ink hover:bg-[color-mix(in_srgb,var(--ink)_6%,transparent)]",
             )}
           >

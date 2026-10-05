@@ -30,7 +30,7 @@ test("area to sq ft", () => {
 test("plan import accepts valid data and ignores invalid data", () => {
   const ok = parsePlanImport(JSON.stringify({ file: "RDC", rooms: [{ name: "Salon", lengthFt: 18.2, widthFt: 14 }] }));
   assert.equal(ok?.file, "RDC");
-  assert.deepEqual(ok?.rooms[0].length, { v: "18.2", u: "imperial" });
+  assert.deepEqual(ok?.rooms[0]?.length, { v: "18.2", u: "imperial" });
   assert.equal(parsePlanImport(null), null);
   assert.equal(parsePlanImport("{not json"), null);
   assert.equal(parsePlanImport(JSON.stringify({ file: "x", rooms: [{ name: "a", lengthFt: -1, widthFt: 3 }] })), null);

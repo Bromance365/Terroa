@@ -68,7 +68,7 @@ export function SiteFooter({ slugPairs }: { slugPairs: SlugPair[] }) {
             </ul>
           </nav>
           <p className="small text-ink-muted">{t("footer.privacyOfficer")}</p>
-          <LanguageSwitch slugPairs={slugPairs} />
+          <LanguageSwitch slugPairs={slugPairs} label={t("footer.language")} />
         </div>
       </div>
     </footer>

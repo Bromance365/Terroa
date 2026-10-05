@@ -7,7 +7,7 @@ import { ProductCard } from "@/components/catalog/ProductCard";
 import { PlanPromo, ProductBrowser, type BrowserItem, type Facet } from "@/components/catalog/ProductBrowser";
 import { JsonLd, breadcrumbLd } from "@/lib/jsonld";
 import { absoluteUrl } from "@/lib/seo";
-import { getCategory, getProductsByCategory, categoryName, imgSrc, type CategoryId } from "@/lib/catalog";
+import { FILTER_FACETS, getCategory, getProductsByCategory, categoryName, imgSrc, type CategoryId } from "@/lib/catalog";
 
 const TONE_RANK = { pale: 0, grey: 1, medium: 2, dark: 3 } as const;
 const TONE_SWATCH = { pale: "mat-frene-blanchi.svg", medium: "mat-chene-naturel.svg", dark: "mat-noyer.svg", grey: "mat-chene-gris.svg" } as const;
@@ -31,13 +31,14 @@ export async function CategoryPage({ categoryId, locale }: { categoryId: Categor
   const installLabel = (v: string) => t(`catalog.install${v[0]!.toUpperCase()}${v.slice(1)}`);
   const usageLabel = (v: string) => t(`catalog.usage${v.split("-").map((x) => x[0]!.toUpperCase() + x.slice(1)).join("")}`);
 
-  const distinct = (pick: (it: BrowserItem) => string[]) => [...new Set(items.flatMap(pick))];
+  const distinct = (pick: (it: BrowserItem) => string[], order: readonly string[] = []) =>
+    [...new Set(items.flatMap(pick))].sort((a, b) => order.indexOf(a) - order.indexOf(b));
   const facets: Facet[] = (
     [
-      { key: "tone", title: t("product.tone"), values: distinct((i) => i.facets.tone), label: toneLabel, swatch: true },
-      { key: "format", title: t("categoryUi.facetFormat"), values: distinct((i) => i.facets.format), label: formatLabel, swatch: false },
-      { key: "install", title: t("categoryUi.facetInstall"), values: distinct((i) => i.facets.install), label: installLabel, swatch: false },
-      { key: "usage", title: t("categoryUi.facetUsage"), values: distinct((i) => i.facets.usage), label: usageLabel, swatch: false },
+      { key: "tone", title: t("product.tone"), values: distinct((i) => i.facets.tone, FILTER_FACETS.tone), label: toneLabel, swatch: true },
+      { key: "format", title: t("categoryUi.facetFormat"), values: distinct((i) => i.facets.format, FILTER_FACETS.format), label: formatLabel, swatch: false },
+      { key: "install", title: t("categoryUi.facetInstall"), values: distinct((i) => i.facets.install, FILTER_FACETS.install), label: installLabel, swatch: false },
+      { key: "usage", title: t("categoryUi.facetUsage"), values: distinct((i) => i.facets.usage, FILTER_FACETS.usage), label: usageLabel, swatch: false },
     ] as const
   )
     .filter((f) => f.values.length > 1) // a facet with a single value filters nothing

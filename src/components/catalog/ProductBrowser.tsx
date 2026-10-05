@@ -3,7 +3,6 @@
 import { useMemo, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { usePathname, useRouter } from "@/i18n/navigation";
 import { Button, IconButton, LinkButton } from "@/components/ui/Button";
 import { FilterChip } from "@/components/ui/controls";
 import { Checkbox, Select } from "@/components/ui/Field";
@@ -62,12 +61,11 @@ export function ProductBrowser({
   const t = useTranslations("category");
   const tu = useTranslations("categoryUi");
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
   const sheetRef = useRef<HTMLDialogElement>(null);
   const [shown, setShown] = useState(PAGE_SIZE);
 
-  const { active, sort } = useMemo(() => parse(new URLSearchParams(searchParams.toString()), facets), [searchParams, facets]);
+  // Local state drives the UI instantly; the URL is kept in sync with history.replaceState (shareable, no navigation).
+  const [{ active, sort }, setFilterState] = useState(() => parse(new URLSearchParams(searchParams.toString()), facets));
   const [draft, setDraft] = useState(active);
 
   const apply = (next: Record<string, string[]>, nextSort: Sort = sort) => {
@@ -75,7 +73,8 @@ export function ProductBrowser({
     for (const [k, v] of Object.entries(next)) if (v.length) q.set(k, v.join(","));
     if (nextSort !== "relevance") q.set("sort", nextSort);
     const qs = q.toString();
-    router.replace((qs ? `${pathname}?${qs}` : pathname) as never, { scroll: false });
+    window.history.replaceState(null, "", qs ? `${window.location.pathname}?${qs}` : window.location.pathname);
+    setFilterState({ active: next, sort: nextSort });
     setShown(PAGE_SIZE);
   };
 

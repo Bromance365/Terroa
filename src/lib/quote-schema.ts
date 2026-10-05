@@ -117,7 +117,7 @@ export function recomputeQuote(lines: ReadonlyArray<QuoteLineInput>): RecomputeR
   const out: Array<{ productId: string; unit: "box" | "panel"; quantity: number }> = [];
 
   for (let index = 0; index < lines.length; index++) {
-    const line = lines[index];
+    const line = lines[index]!;
     const product = getProduct(line.productId);
     if (!product) return { ok: false, error: { code: "unknown-product", index } };
 

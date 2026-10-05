@@ -14,7 +14,7 @@ import {
 } from "./compute";
 import { mockAnalyzer } from "./analyzer";
 import { planImportSchema, type UiRoom } from "./types";
-import { quoteLineSchema } from "@/lib/quote-store";
+import { lineSchema } from "@/lib/quote-schema";
 
 const make = (over: Partial<UiRoom> & { id: string }): UiRoom => ({
   n: 1,
@@ -96,8 +96,8 @@ describe("grouping", () => {
     ]);
   });
   it("computes boxes from coverage, null when unknown", () => {
-    expect(g.groups[0].boxes).toBe(21);
-    expect(g.groups[1].boxes).toBeNull();
+    expect(g.groups[0]?.boxes).toBe(21);
+    expect(g.groups[1]?.boxes).toBeNull();
   });
   it("lists rooms without flooring", () => {
     expect(g.unassigned.map((r) => r.name)).toEqual(["Corridor"]);
@@ -110,7 +110,7 @@ describe("grouping", () => {
     const lines = planQuoteLines(g.groups, "Plan RDC");
     expect(lines[0]).toMatchObject({ productId: "p1", unit: "box", quantity: 21, plannedAreaSqft: 374, source: "plan", rooms: ["Salon", "Cuisine"] });
     expect(lines[1]).toMatchObject({ unit: "area", quantity: 100 });
-    for (const l of lines) expect(quoteLineSchema.safeParse({ ...l, id: "x" }).success).toBe(true);
+    for (const l of lines) expect(lineSchema.safeParse({ productId: l.productId, quantity: l.quantity, unit: l.unit, rooms: l.rooms, plannedAreaSqft: l.plannedAreaSqft }).success).toBe(true);
   });
   it("builds a calculator payload from counted rooms only", () => {
     const payload = calculatorImport(rooms, "Plan.pdf");
@@ -145,7 +145,7 @@ describe("buildUiRooms with the mock sample", () => {
       "en",
     );
     expect(rooms.map((r) => r.included)).toEqual([false, false]);
-    expect(rooms[1].name).toBe("Office");
+    expect(rooms[1]?.name).toBe("Office");
   });
 });
 

@@ -696,7 +696,7 @@ function LineRow({ line, locale }: { line: QuoteLine; locale: Locale }) {
 
   const name = productName(product, locale);
   const descriptor =
-    product.kind === "panel" ? t("catalog.panelDescriptor") : product.category === "coverings" ? t("catalog.coveringDescriptor") : t("catalog.floorDescriptor");
+    product.kind === "panel" ? t("catalog.panelDescriptor") : product.format === "large-tile" ? t("catalog.coveringDescriptor") : t("catalog.floorDescriptor");
   const origin = [
     line.rooms && line.rooms.length ? line.rooms.join(", ") : null,
     line.plannedAreaSqft ? t("quoteForm.plannedArea", { area: formatSqft(line.plannedAreaSqft, locale) }) : null,

@@ -96,6 +96,8 @@ export function BuyPanel({ productId, coverage }: { productId: string; coverage:
       {slot
         ? createPortal(
             <div
+              role="region"
+              aria-label={t("productUi.quickAdd")}
               className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-surface-raised px-4 pt-3 sm:hidden"
               style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
             >

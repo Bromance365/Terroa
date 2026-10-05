@@ -57,8 +57,8 @@ describe("sanitizeExtraction (hostile model output)", () => {
   });
   it("cuts huge labels and strips control characters", () => {
     const out = sanitizeExtraction(doc([room({ label: `<img src=x onerror=alert(1)>${"X".repeat(5000)}\u202e\n` })]))!;
-    expect(out.rooms[0].label.length).toBeLessThanOrEqual(60);
-    expect(out.rooms[0].label).not.toMatch(/[\u202e\n]/);
+    expect(out.rooms[0]?.label.length).toBeLessThanOrEqual(60);
+    expect(out.rooms[0]?.label).not.toMatch(/[\u202e\n]/);
   });
   it("drops unknown fields, including model-written areas", () => {
     const out = sanitizeExtraction({ ...doc([room({ areaSqft: 9999 })]), totalArea: 9999 })!;
@@ -75,8 +75,8 @@ describe("sanitizeExtraction (hostile model output)", () => {
     expect(out.rooms).toHaveLength(60);
     expect(out.warnings).toHaveLength(20);
     expect(out.warnings[0]).toHaveLength(200);
-    expect(out.rooms[0].page).toBe(20);
-    expect(out.rooms[0].bbox).toEqual({ x: 90, y: 0, w: 10, h: 100 });
+    expect(out.rooms[0]?.page).toBe(20);
+    expect(out.rooms[0]?.bbox).toEqual({ x: 90, y: 0, w: 10, h: 100 });
     expect(extractionSchema.safeParse(out).success).toBe(true);
   });
   it("handles Infinity, NaN and non-objects", () => {
@@ -84,11 +84,11 @@ describe("sanitizeExtraction (hostile model output)", () => {
     expect(sanitizeExtraction(null)).toBeNull();
     const out = sanitizeExtraction(doc([room({ lengthFt: Infinity, widthFt: Number.NaN, bbox: "x" }), 5, null]))!;
     expect(out.rooms).toHaveLength(1);
-    expect(out.rooms[0].confidence).toBe("illegible");
+    expect(out.rooms[0]?.confidence).toBe("illegible");
   });
   it("parseUntrustedExtraction keeps valid input untouched and cleans the rest", () => {
     expect(parseUntrustedExtraction(doc())).toEqual(doc());
-    expect(parseUntrustedExtraction(doc([room({ lengthFt: 9999 })]))!.rooms[0].lengthFt).toBeNull();
+    expect(parseUntrustedExtraction(doc([room({ lengthFt: 9999 })]))!.rooms[0]?.lengthFt).toBeNull();
   });
 });
 

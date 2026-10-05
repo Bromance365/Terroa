@@ -13,7 +13,8 @@ export type PriceMode = "hidden" | "from" | "exact";
 
 export interface Product {
   id: string;
-  category: CategoryId;
+  /** Product pages live under vinyl or panels; "coverings" is a listing that groups every floor product. */
+  category: Exclude<CategoryId, "coverings">;
   kind: ProductKind;
   name_fr: string;
   name_en: string;
@@ -95,9 +96,8 @@ export function findProductBySlug(category: CategoryId, locale: Locale, slug: st
 
 const PRODUCT_PATH = {
   vinyl: "/flooring/vinyl/[slug]",
-  coverings: "/floor-coverings/[slug]",
   panels: "/acoustic-panels/[slug]",
-} as const satisfies Record<CategoryId, Pathname>;
+} as const satisfies Record<Product["category"], Pathname>;
 
 /** Typed href object for next-intl's Link / getPathname. */
 export function productHref(p: Product, locale: Locale) {

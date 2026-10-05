@@ -1,7 +1,6 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { z } from "zod";
 import { getProduct } from "@/lib/catalog";
 
 /**
@@ -11,25 +10,51 @@ import { getProduct } from "@/lib/catalog";
 export const QUOTE_STORAGE_KEY = "terroa.quote.v1";
 export const MAX_QTY = 9999;
 
-export const quoteLineSchema = z.object({
-  id: z.string().min(1).max(64),
-  productId: z.string().min(1).max(64),
-  unit: z.enum(["box", "panel", "area"]),
-  quantity: z.number().int().min(1).max(MAX_QTY),
-  rooms: z.array(z.string().max(60)).max(60).optional(),
-  plannedAreaSqft: z.number().positive().max(100000).optional(),
-  source: z.enum(["catalogue", "calculator", "plan"]).optional(),
-  sourceLabel: z.string().max(80).optional(),
-});
-export type QuoteLine = z.infer<typeof quoteLineSchema>;
-
-const stateSchema = z.object({
-  lines: z.array(quoteLineSchema).max(100),
-  removed: z.array(quoteLineSchema).max(100).default([]),
-});
+export interface QuoteLine {
+  id: string;
+  productId: string;
+  unit: "box" | "panel" | "area";
+  quantity: number;
+  rooms?: string[];
+  plannedAreaSqft?: number;
+  source?: "catalogue" | "calculator" | "plan";
+  sourceLabel?: string;
+}
 interface QuoteState {
   lines: QuoteLine[];
   removed: QuoteLine[];
+}
+
+// Hand-written validation (instead of zod) keeps the header's bundle small: this module loads on every page.
+const isStr = (v: unknown, max: number): v is string => typeof v === "string" && v.length > 0 && v.length <= max;
+
+function parseLine(v: unknown): QuoteLine | null {
+  if (typeof v !== "object" || v === null) return null;
+  const o = v as Record<string, unknown>;
+  if (!isStr(o.id, 64) || !isStr(o.productId, 64)) return null;
+  if (o.unit !== "box" && o.unit !== "panel" && o.unit !== "area") return null;
+  if (!Number.isInteger(o.quantity) || (o.quantity as number) < 1 || (o.quantity as number) > MAX_QTY) return null;
+  const line: QuoteLine = { id: o.id, productId: o.productId, unit: o.unit, quantity: o.quantity as number };
+  if (Array.isArray(o.rooms)) {
+    if (o.rooms.length > 60 || !o.rooms.every((r) => typeof r === "string" && r.length <= 60)) return null;
+    line.rooms = o.rooms as string[];
+  }
+  if (o.plannedAreaSqft !== undefined) {
+    if (typeof o.plannedAreaSqft !== "number" || !(o.plannedAreaSqft > 0) || o.plannedAreaSqft > 100000) return null;
+    line.plannedAreaSqft = o.plannedAreaSqft;
+  }
+  if (o.source === "catalogue" || o.source === "calculator" || o.source === "plan") line.source = o.source;
+  if (typeof o.sourceLabel === "string" && o.sourceLabel.length <= 80) line.sourceLabel = o.sourceLabel;
+  return line;
+}
+
+function parseState(v: unknown): QuoteState | null {
+  if (typeof v !== "object" || v === null) return null;
+  const o = v as Record<string, unknown>;
+  const lines = Array.isArray(o.lines) && o.lines.length <= 100 ? o.lines.map(parseLine) : null;
+  if (!lines || lines.some((l) => l === null)) return null;
+  const removedRaw = Array.isArray(o.removed) && o.removed.length <= 100 ? o.removed.map(parseLine) : [];
+  return { lines: lines as QuoteLine[], removed: removedRaw.filter((l): l is QuoteLine => l !== null) };
 }
 
 const EMPTY: QuoteState = { lines: [], removed: [] };
@@ -51,8 +76,8 @@ function hydrate() {
   try {
     const raw = window.localStorage.getItem(QUOTE_STORAGE_KEY);
     if (!raw) return;
-    const parsed = stateSchema.safeParse(JSON.parse(raw));
-    if (parsed.success) state = parsed.data;
+    const parsed = parseState(JSON.parse(raw));
+    if (parsed) state = parsed;
   } catch {
     state = EMPTY;
   }

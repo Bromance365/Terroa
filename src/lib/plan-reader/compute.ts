@@ -213,7 +213,6 @@ export function formatFeetInches(feet: number, locale: Locale): string {
 
 /** File name without control characters or extension, for the quote line origin note ("plan RDC"). */
 export function baseFileName(name: string): string {
-  // eslint-disable-next-line no-control-regex
   const cleaned = name.replace(/[\u0000-\u001f\u007f]/g, "").replace(/\.[A-Za-z0-9]{1,5}$/, "").trim();
   return (cleaned || "plan").slice(0, 60);
 }

@@ -295,7 +295,8 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "privacyOfficer": "Responsable des renseignements personnels : [nom, courriel]",
-    "legal": "Liens légaux"
+    "legal": "Liens légaux",
+    "language": "Langue du site"
   },
   "errors": {
     "nameRequired": "Entrez votre nom.",
@@ -485,7 +486,8 @@
     "photoProject": "[Photo de projet]",
     "photoLabel": "Photo {n} sur {total}",
     "collectionLine": "{type} · {collection}",
-    "imageAlt": "Illustration provisoire de {name}"
+    "imageAlt": "Illustration provisoire de {name}",
+    "quickAdd": "Ajout rapide à la soumission"
   },
   "planUi": {
     "stepOf": "Étape {current} sur {total} · {name}",
@@ -521,7 +523,9 @@
     "viewQuote": "Voir la soumission",
     "tryAnother": "Essayer un autre plan",
     "scaleNone": "non indiquée",
-    "fileLabel": "Plan téléversé"
+    "fileLabel": "Plan téléversé",
+    "noRoomsIncluded": "Incluez au moins une pièce avec ses dimensions avant d’ouvrir le calculateur.",
+    "roomsCount": "{count, plural, one {# pièce} other {# pièces}}"
   },
   "legal": {
     "draftNotice": "Version provisoire. Ce texte doit être complété par Terroa et validé par un conseiller juridique avant la mise en ligne. Les valeurs entre crochets restent à fournir.",

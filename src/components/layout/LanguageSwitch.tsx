@@ -21,13 +21,13 @@ export function useAlternateHref(slugPairs: SlugPair[]) {
   return { other, href: pathname as never };
 }
 
-export function LanguageSwitch({ slugPairs, className }: { slugPairs: SlugPair[]; className?: string }) {
+export function LanguageSwitch({ slugPairs, className, label }: { slugPairs: SlugPair[]; className?: string; label?: string }) {
   const t = useTranslations("common");
   const locale = useLocale() as Locale;
   const { href } = useAlternateHref(slugPairs);
   const item = "inline-flex min-h-[44px] min-w-[32px] items-center justify-center px-1 no-underline";
   return (
-    <nav aria-label={t("language")} className={cx("flex items-center", className)}>
+    <nav aria-label={label ?? t("language")} className={cx("flex items-center", className)}>
       <span lang="fr" className={cx(item, "font-semibold", locale === "fr" ? "text-ink underline underline-offset-4" : "")} aria-current={locale === "fr" ? "true" : undefined}>
         {locale === "fr" ? (
           "FR"

@@ -295,7 +295,8 @@
     "privacy": "Privacy policy",
     "terms": "Terms of use",
     "privacyOfficer": "Person in charge of personal information: [name, email]",
-    "legal": "Legal links"
+    "legal": "Legal links",
+    "language": "Site language"
   },
   "errors": {
     "nameRequired": "Enter your name.",
@@ -485,7 +486,8 @@
     "photoProject": "[Project photo]",
     "photoLabel": "Photo {n} of {total}",
     "collectionLine": "{type} · {collection}",
-    "imageAlt": "Temporary illustration of {name}"
+    "imageAlt": "Temporary illustration of {name}",
+    "quickAdd": "Quick add to quote"
   },
   "planUi": {
     "stepOf": "Step {current} of {total} · {name}",
@@ -521,7 +523,9 @@
     "viewQuote": "View the quote",
     "tryAnother": "Try another plan",
     "scaleNone": "not shown",
-    "fileLabel": "Uploaded plan"
+    "fileLabel": "Uploaded plan",
+    "noRoomsIncluded": "Include at least one room with its dimensions before opening the calculator.",
+    "roomsCount": "{count, plural, one {# room} other {# rooms}}"
   },
   "legal": {
     "draftNotice": "Draft version. Terroa must complete this text and have it reviewed by legal counsel before launch. Values in square brackets are still to be supplied.",

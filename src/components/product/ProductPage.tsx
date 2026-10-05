@@ -236,7 +236,7 @@ export async function ProductPage({ product, locale }: { product: Product; local
               <Icon name="arrowRight" />
             </Link>
           </div>
-          <div className="mt-6 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))]">
+          <div className="mt-6 grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr))]">
             {projects.map((p) => (
               <ProjectTile key={p.id} project={p} />
             ))}
@@ -247,7 +247,7 @@ export async function ProductPage({ product, locale }: { product: Product; local
       {siblings.length ? (
         <section aria-labelledby="others-title" className="mt-16">
           <h2 id="others-title">{t("product.otherTones")}</h2>
-          <ul className="mt-6 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))]">
+          <ul className="mt-6 grid gap-4 sm:gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr))] sm:[grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))]">
             {siblings.map((p) => (
               <li key={p.id}>
                 <Link href={productHref(p, locale)} className="card group block overflow-hidden text-ink no-underline hover:text-ink">

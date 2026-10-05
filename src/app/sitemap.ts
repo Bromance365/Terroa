@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
   }
-  const productKey = { vinyl: "/flooring/vinyl/[slug]", coverings: "/floor-coverings/[slug]", panels: "/acoustic-panels/[slug]" } as const;
+  const productKey = { vinyl: "/flooring/vinyl/[slug]", panels: "/acoustic-panels/[slug]" } as const;
   for (const p of getProducts()) {
     const hrefFor = (l: Locale) => ({ pathname: productKey[p.category], params: { slug: productSlug(p, l) } });
     for (const locale of routing.locales) {

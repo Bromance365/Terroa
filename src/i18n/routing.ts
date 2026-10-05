@@ -16,7 +16,6 @@ export const routing = defineRouting({
     "/acoustic-panels": { fr: "/panneaux-acoustiques", en: "/acoustic-panels" },
     "/acoustic-panels/[slug]": { fr: "/panneaux-acoustiques/[slug]", en: "/acoustic-panels/[slug]" },
     "/floor-coverings": { fr: "/revetements", en: "/floor-coverings" },
-    "/floor-coverings/[slug]": { fr: "/revetements/[slug]", en: "/floor-coverings/[slug]" },
     "/quote": { fr: "/soumission", en: "/quote" },
     "/calculator": { fr: "/calculateur", en: "/calculator" },
     "/plan-reader": { fr: "/lecteur-de-plans", en: "/plan-reader" },

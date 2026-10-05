@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { getPathname } from "@/i18n/navigation";
 import { dmSans, fraunces } from "../fonts";
@@ -46,6 +46,10 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "common" });
   const l = locale as Locale;
+  // Server-only namespaces never reach the client bundle.
+  const all = (await getMessages()) as Record<string, unknown>;
+  const SERVER_ONLY = new Set(["home", "legal", "meta", "notFound", "price", "_meta"]);
+  const clientMessages = Object.fromEntries(Object.entries(all).filter(([k]) => !SERVER_ONLY.has(k)));
   const searchItems = getProducts().map((p) => ({
     id: p.id,
     name: productName(p, l),
@@ -57,7 +61,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   return (
     <html lang={locale} className={`${fraunces.variable} ${dmSans.variable}`}>
       <body>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <a href="#main" className="skip-link">
             {t("skipToContent")}
           </a>

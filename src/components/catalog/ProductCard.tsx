@@ -8,7 +8,7 @@ import { PriceLine } from "./PriceLine";
 
 export async function descriptorFor(product: Product) {
   const t = await getTranslations("catalog");
-  const base = product.kind === "panel" ? t("panelDescriptor") : product.category === "coverings" ? t("coveringDescriptor") : t("floorDescriptor");
+  const base = product.kind === "panel" ? t("panelDescriptor") : product.format === "large-tile" ? t("coveringDescriptor") : t("floorDescriptor");
   return base;
 }
 

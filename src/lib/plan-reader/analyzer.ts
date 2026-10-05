@@ -17,8 +17,6 @@ export interface AnalysisResult {
   readAt: string;
   /** Optional per-room suggestions, index-aligned with extraction.rooms (mock only; the real analyzer sends none). */
   hints?: { productId: (string | null)[]; included: boolean[] };
-  /** True when the preview of the uploaded file can be drawn in the viewer (not in phase 1). */
-  previewable?: boolean;
 }
 
 export type PlanAnalyzer = (file: File, options?: AnalyzeOptions) => Promise<AnalysisResult>;
