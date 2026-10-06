@@ -47,12 +47,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
       <section className="container-page section-y" aria-labelledby="hero-title">
         <div className="flex flex-wrap items-center gap-x-16 gap-y-8">
           <div className="min-w-0 flex-1 basis-[min(100%,440px)]">
-            <p className="label">{t("home.eyebrow")}</p>
-            <h1 id="hero-title" className="display mt-4">
+            <p className="label rise" style={{ "--i": 0 } as React.CSSProperties}>{t("home.eyebrow")}</p>
+            <h1 id="hero-title" className="display rise mt-4" style={{ "--i": 1 } as React.CSSProperties}>
               {t.rich("home.title", { em: (c) => <em className="text-copper">{c}</em> })}
             </h1>
-            <p className="mt-5 max-w-xl text-[18px] leading-7 text-ink-muted">{t("home.lead")}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <p className="rise mt-5 max-w-xl text-[18px] leading-7 text-ink-muted" style={{ "--i": 2 } as React.CSSProperties}>{t("home.lead")}</p>
+            <div className="rise mt-8 flex flex-col gap-3 sm:flex-row" style={{ "--i": 3 } as React.CSSProperties}>
               <LinkButton href="/quote" size="lg">
                 {t("common.requestQuote")}
               </LinkButton>
@@ -60,10 +60,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
                 {t("common.uploadPlan")}
               </LinkButton>
             </div>
-            <p className="small mt-6 max-w-md text-ink-muted">{t("home.audience")}</p>
+            <p className="small rise mt-6 max-w-md text-ink-muted" style={{ "--i": 4 } as React.CSSProperties}>{t("home.audience")}</p>
           </div>
-          <div className="relative min-w-0 flex-1 basis-[min(100%,420px)]">
-            <div className="aspect-[4/5] overflow-hidden rounded-lg bg-line">
+          <div className="rise relative min-w-0 flex-1 basis-[min(100%,420px)]" style={{ "--i": 2 } as React.CSSProperties}>
+            <div className="aspect-[4/5] overflow-hidden rounded-lg bg-line shadow-[var(--shadow-lift)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={imgSrc("scene-01.svg")} alt="" width={1000} height={1250} className="h-full w-full object-cover" fetchPriority="high" decoding="async" />
             </div>
@@ -89,11 +89,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         </div>
       </section>
 
-      {/* Three ways to start */}
+      {/* Three ways to start: one lead card, two supporting cards (not three equal tiles). */}
       <section className="container-page section-y" aria-labelledby="start-title">
-        <h2 id="start-title">{t("home.startTitle")}</h2>
-        <div className="mt-8 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))]">
-          <ToolCard icon="layers" title={t("home.startCatalogTitle")} text={t("home.startCatalogText")} href="/flooring/vinyl" action={t("common.seeProducts")} />
+        <h2 id="start-title" className="reveal">{t("home.startTitle")}</h2>
+        <div className="reveal mt-8 grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+          <Link href="/flooring/vinyl" className="card group flex min-w-0 flex-col overflow-hidden text-ink no-underline hover:text-ink lg:row-span-2">
+            <div className="aspect-[16/9] overflow-hidden bg-line lg:aspect-auto lg:min-h-[240px] lg:flex-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={imgSrc("scene-03.svg")} alt="" width={1000} height={560} className="img-zoom h-full w-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div className="flex flex-col gap-2 p-6">
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-[color-mix(in_srgb,var(--accent)_10%,var(--surface-raised))] text-accent">
+                <Icon name="layers" />
+              </span>
+              <h3 className="font-display text-[28px] leading-9">{t("home.startCatalogTitle")}</h3>
+              <p className="max-w-md text-ink-muted">{t("home.startCatalogText")}</p>
+              <span className="mt-2 inline-flex min-h-[44px] items-center gap-2 font-semibold text-accent">
+                {t("common.seeProducts")}
+                <Icon name="arrowRight" />
+              </span>
+            </div>
+          </Link>
           <ToolCard icon="calculator" title={t("common.calculateQuantities")} text={t("home.startCalculatorText")} href="/calculator" action={t("home.openCalculator")} />
           <ToolCard icon="upload" title={t("common.uploadPlan")} text={t("home.startPlanText")} href="/plan-reader" action={t("home.tryPlanReader")} />
         </div>
@@ -101,10 +117,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       {/* Categories */}
       <section className="container-page section-y" aria-labelledby="products-title">
-        <h2 id="products-title">{t("home.productsTitle")}</h2>
-        <div className="mt-8 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))]">
-          {getCategories().map((c) => (
-            <CategoryTile key={c.id} category={c} />
+        <h2 id="products-title" className="reveal">{t("home.productsTitle")}</h2>
+        <div className="reveal mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr]">
+          {getCategories().map((c, i) => (
+            <CategoryTile key={c.id} category={c} featured={i === 0} />
           ))}
         </div>
       </section>
@@ -118,7 +134,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <Icon name="arrowRight" />
           </Link>
         </div>
-        <div className="mt-8 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))]">
+        <div className="reveal-stagger mt-8 grid grid-cols-2 gap-3 sm:gap-6 sm:[grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))]">
           {featured.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
@@ -165,11 +181,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <Icon name="arrowRight" />
           </Link>
         </div>
-        <div className="mt-8 grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))]">
+        <div className="reveal mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-[2fr_1fr]">
           {getProjects()
             .slice(0, 3)
-            .map((p) => (
-              <ProjectTile key={p.id} project={p} />
+            .map((p, i) => (
+              <ProjectTile key={p.id} project={p} wide={i === 0} />
             ))}
         </div>
       </section>
@@ -177,7 +193,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
       {/* How it works */}
       <section className="container-page section-y" aria-labelledby="how-title">
         <h2 id="how-title">{t("home.howTitle")}</h2>
-        <ol className="mt-8 grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))]">
+        <ol className="reveal-stagger mt-8 grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))]">
           {[1, 2, 3].map((n) => (
             <li key={n} className="border-t border-line pt-4">
               <p aria-hidden="true" className="num font-display text-[28px] text-ink-muted">
@@ -192,7 +208,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       {/* Closing CTA */}
       <section className="container-page section-y" aria-labelledby="cta-title">
-        <div className="panel flex flex-wrap items-center justify-between gap-6 p-6 sm:p-10">
+        <div className="panel reveal flex flex-wrap items-center justify-between gap-6 p-6 sm:p-10">
           <div className="min-w-0 max-w-xl">
             <h2 id="cta-title" className="text-[28px] leading-9">
               {t("home.ctaTitle")}

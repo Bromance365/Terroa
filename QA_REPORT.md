@@ -97,6 +97,19 @@ Approved by Vy: Anthropic as the provider for the plan reader. Not yet decided o
 
 New findings: **F17 (Medium, privacy)**: the EFVP and written provider terms are still required before `PLAN_READER_ENABLED=true`; **F18 (Low)**: PDFs have no on-page preview in live mode (no renderer), only images show under the overlays; **F19 (Low)**: refusal fallbacks (`fallbacks: "default"`) are not implemented, a refusal shows the "unreadable" state; **F20 (Low)**: PDF page count and active-content checks are byte scans (best effort).
 
+## Visual polish pass (6 October 2026)
+
+Preserve-mode redesign: tokens, fonts and palette unchanged; composition, motion and surfaces improved. No functional change.
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 46 | Home recomposition | PASS (visual) | "Trois façons" is one lead card plus two supporting cards, categories and projects use asymmetric grids (no three equal tiles, no empty grid cells) |
+| 47 | Motion is motivated and safe | PASS | Hero entrance (hierarchy), card lift and button press (feedback), section reveals (reading order), header shadow after scroll. CSS only (scroll-driven animations where supported, plain visible content elsewhere), all inside `prefers-reduced-motion: no-preference`; verified a real scroll shows the reveal and a reduced-motion render shows everything |
+| 48 | Mobile product grids | PASS | Two columns under 640 px on home and category pages, no horizontal overflow at 390 px |
+| 49 | Regression | PASS | lint 0 errors, 98 tests, build, axe 0 violations (19 pages x 2 viewports), scripted browser flows all PASS |
+| 50 | Imagery | OPEN (F21, Medium) | Illustrations are still the temporary SVG scenes; real photography is the largest remaining visual gap. AI image generation was not run (costs credits, needs approval) |
+| 51 | Browser console | PASS with note | Uploading a plan while the plan reader is disabled logs one expected 503 before falling back to the demo |
+
 ## Verdict
 
 **READY for phase 1 review** (UI with mock data): every phase 1 acceptance item that can be verified here passes.

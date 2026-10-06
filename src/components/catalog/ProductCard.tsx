@@ -38,9 +38,9 @@ export async function ProductCard({ product, priority = false }: { product: Prod
           </span>
         ) : null}
       </Link>
-      <div className="flex flex-1 items-end justify-between gap-3 p-4">
+      <div className="flex flex-1 flex-col justify-between gap-2 p-3 sm:flex-row sm:items-end sm:gap-3 sm:p-4">
         <div className="min-w-0">
-          <h3 className="line-clamp-2 font-display text-[18px] leading-6">
+          <h3 className="line-clamp-2 font-display text-[16px] leading-5 sm:text-[18px] sm:leading-6">
             <Link href={productHref(product, locale)} className="text-ink no-underline hover:text-accent">
               {name}
             </Link>

@@ -157,7 +157,7 @@ export function Calculator() {
   );
 
   const coverageValue = parsePositiveDecimal(computeText(coverage, "area", units));
-  const dash = "—";
+  const dash = "-";
 
   const errorMessage = (kindA: DimensionError | null, kindB: DimensionError | null, hasInput: boolean, which: "room" | "wall") => {
     if (!hasInput || (!kindA && !kindB)) return null;

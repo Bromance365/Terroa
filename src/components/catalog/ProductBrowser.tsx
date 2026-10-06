@@ -188,7 +188,7 @@ export function ProductBrowser({
             </Button>
           </div>
         ) : (
-          <ul className="grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr))]">
+          <ul className="grid grid-cols-2 gap-3 sm:gap-6 sm:[grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr))]">
             {visible.flatMap((it, i) => {
               const nodes = [<li key={it.id}>{cards[it.id]}</li>];
               if (i === Math.min(5, visible.length - 1)) {

@@ -34,9 +34,9 @@ export function SiteHeader({ slugPairs, searchItems }: { slugPairs: SlugPair[]; 
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/85">
+    <header className="site-header sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/85">
       <div className="container-page flex min-h-[64px] items-center gap-4 lg:gap-6">
-        <Link href="/" className="font-display text-[24px] font-semibold leading-none text-ink no-underline hover:text-ink" aria-label={`${t("common.brand")} — ${t("nav.home")}`}>
+        <Link href="/" className="font-display text-[24px] font-semibold leading-none text-ink no-underline hover:text-ink" aria-label={`${t("common.brand")} - ${t("nav.home")}`}>
           {t("common.brand")}
         </Link>
 

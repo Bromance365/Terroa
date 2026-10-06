@@ -13,18 +13,18 @@ import {
 } from "@/lib/catalog";
 import { Icon, type IconName } from "@/components/ui/icons";
 
-export async function CategoryTile({ category }: { category: Category }) {
+export async function CategoryTile({ category, featured = false }: { category: Category; featured?: boolean }) {
   const t = await getTranslations("common");
   const locale = (await getLocale()) as Locale;
   return (
-    <Link href={category.key} className="card group block overflow-hidden text-ink no-underline hover:text-ink">
-      <div className="aspect-[16/10] overflow-hidden bg-line">
+    <Link href={category.key} className={`card group flex h-full flex-col overflow-hidden text-ink no-underline hover:text-ink ${featured ? "lg:row-span-2" : ""}`}>
+      <div className={`overflow-hidden bg-line ${featured ? "aspect-[16/10] lg:aspect-auto lg:min-h-[320px] lg:flex-1" : "aspect-[16/10]"}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={imgSrc(category.image)} alt="" width={800} height={500} className="img-zoom h-full w-full object-cover" loading="lazy" decoding="async" />
       </div>
-      <div className="flex items-center justify-between gap-3 p-4">
+      <div className={`flex items-center justify-between gap-3 ${featured ? "p-6" : "p-4"}`}>
         <div>
-          <h3 className="font-display text-[22px] leading-7">{categoryName(category, locale)}</h3>
+          <h3 className={`font-display ${featured ? "text-[28px] leading-9" : "text-[22px] leading-7"}`}>{categoryName(category, locale)}</h3>
           <p className="small text-ink-muted">{t("seeCollections")}</p>
         </div>
         <Icon name="arrowRight" className="text-accent" />
@@ -33,7 +33,7 @@ export async function CategoryTile({ category }: { category: Category }) {
   );
 }
 
-export async function ProjectTile({ project, linkHref }: { project: Project; linkHref?: string }) {
+export async function ProjectTile({ project, linkHref, wide = false }: { project: Project; linkHref?: string; wide?: boolean }) {
   const t = await getTranslations("catalog");
   const locale = (await getLocale()) as Locale;
   const typeLabel = { residential: t("projectTypeResidential"), commercial: t("projectTypeCommercial"), office: t("projectTypeOffice") }[project.type];
@@ -43,13 +43,13 @@ export async function ProjectTile({ project, linkHref }: { project: Project; lin
     .map((p) => productName(p, locale))
     .join(", ");
   const media = (
-    <div className="aspect-[4/3] overflow-hidden rounded-md bg-line">
+    <div className={`overflow-hidden rounded-md bg-line ${wide ? "aspect-[4/3] lg:aspect-auto lg:min-h-[320px] lg:flex-1" : "aspect-[4/3]"}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={imgSrc(project.image)} alt="" width={800} height={600} className="img-zoom h-full w-full object-cover" loading="lazy" decoding="async" />
     </div>
   );
   return (
-    <figure className="group m-0 min-w-0">
+    <figure className={`group m-0 flex min-w-0 flex-col ${wide ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""}`}>
       {linkHref ? <a href={linkHref}>{media}</a> : media}
       <figcaption className="mt-3">
         <p className="font-semibold">

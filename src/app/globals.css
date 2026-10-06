@@ -92,3 +92,53 @@
 }
 
 h2.label, h3.label { font-family: var(--font-sans-stack); font-size: var(--text-label); line-height: var(--text-label--line-height); }
+
+/* ------------------------------------------------------------------ */
+/* Surface and motion layer. Every animation has a job:                */
+/* hierarchy (entrance of the hero), feedback (press, hover, focus),   */
+/* storytelling (sections arrive in reading order).                    */
+/* ------------------------------------------------------------------ */
+:root {
+  /* Shadows tinted with the ink token, never pure black. */
+  --shadow-card: 0 1px 2px color-mix(in srgb, var(--ink) 6%, transparent), 0 8px 24px -12px color-mix(in srgb, var(--ink) 16%, transparent);
+  --shadow-lift: 0 2px 4px color-mix(in srgb, var(--ink) 6%, transparent), 0 18px 36px -16px color-mix(in srgb, var(--ink) 28%, transparent);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer components {
+  /* Cards that link somewhere lift a little and settle on press. */
+  .card, .panel { transition: box-shadow 220ms var(--ease-out), transform 220ms var(--ease-out), border-color 220ms var(--ease-out); }
+  a.card:hover, article.card:hover, .card.group:hover { box-shadow: var(--shadow-lift); transform: translateY(-2px); border-color: color-mix(in srgb, var(--ink) 16%, var(--line)); }
+  a.card:active { transform: translateY(0) scale(0.995); }
+
+  /* Buttons: tactile press. */
+  a[class*="min-h-[44px]"], button[class*="min-h-[44px]"], a[class*="min-h-[52px]"], button[class*="min-h-[52px]"] { transition: background-color 150ms ease, transform 120ms var(--ease-out), box-shadow 200ms var(--ease-out); }
+  a[class*="min-h-[44px]"]:active, button[class*="min-h-[44px]"]:active:not(:disabled), a[class*="min-h-[52px]"]:active, button[class*="min-h-[52px]"]:active:not(:disabled) { transform: translateY(1px) scale(0.985); }
+  a[class*="bg-accent"][class*="min-h-"]:hover, button[class*="bg-accent"][class*="min-h-"]:hover:not(:disabled) { box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--accent) 70%, transparent); }
+
+  /* Header gains a hairline shadow once the page has moved (scroll-driven, no JS). */
+  .site-header { transition: box-shadow 200ms ease; }
+
+  /* Images fade in without layout shift. */
+  .img-fade { animation: img-in 500ms var(--ease-out) both; }
+
+  .eyebrow-rule { display: inline-block; width: 28px; height: 2px; background: var(--accent); border-radius: 2px; }
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes img-in { from { opacity: 0; transform: scale(1.015); } to { opacity: 1; transform: none; } }
+@keyframes reveal { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes header-shadow { from { box-shadow: none; } to { box-shadow: 0 8px 20px -14px color-mix(in srgb, var(--ink) 30%, transparent); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance: copy first, then the picture. Set --i on each element. */
+  .rise { animation: rise 700ms var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+
+  /* Sections arrive as they enter the viewport. Where scroll-driven animations are not supported,
+     content is simply visible (no hidden-by-default state, so nothing depends on JavaScript). */
+  @supports (animation-timeline: view()) {
+    .reveal { animation: reveal linear backwards; animation-timeline: view(); animation-range: entry 0% entry 28%; }
+    .reveal-stagger > * { animation: reveal linear backwards; animation-timeline: view(); animation-range: entry 0% entry 32%; }
+    .site-header { animation: header-shadow linear both; animation-timeline: scroll(root); animation-range: 0 120px; }
+  }
+}
