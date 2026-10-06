@@ -41,6 +41,7 @@ export function SiteFooter({ slugPairs }: { slugPairs: SlugPair[] }) {
               <ul className="mt-3 space-y-1">
                 <li><Link className={`${linkCls} inline-flex min-h-[32px] items-center`} href="/calculator">{t("calculator.title")}</Link></li>
                 <li><Link className={`${linkCls} inline-flex min-h-[32px] items-center`} href="/plan-reader">{t("nav.planReader")}</Link></li>
+                <li><Link className={`${linkCls} inline-flex min-h-[32px] items-center`} href="/measure">{t("measure.navLabel")}</Link></li>
                 <li><Link className={`${linkCls} inline-flex min-h-[32px] items-center`} href="/quote">{t("footer.myQuote")}</Link></li>
               </ul>
             </nav>

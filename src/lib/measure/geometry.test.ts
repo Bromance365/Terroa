@@ -63,7 +63,7 @@ describe("validity", () => {
   it("accepts simple polygons", () => {
     expect(isSimplePolygon(square(10))).toBe(true);
     expect(isSimplePolygon(L)).toBe(true);
-    expect(validatePolygon(L)).toEqual({ ok: true });
+    expect(validatePolygon(L, 50)).toEqual({ ok: true });
   });
   it("rejects too few points, bow-ties, tiny areas and bad numbers", () => {
     expect(validatePolygon([{ x: 0, y: 0 }, { x: 5, y: 5 }])).toEqual({ ok: false, problem: "too-few" });

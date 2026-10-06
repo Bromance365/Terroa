@@ -477,9 +477,13 @@ export const SWEEP_RADII: readonly number[] = [2, 4, 6, 8, 10, 12, 16, 20, 24, 3
  * walls returns "blank" immediately.
  */
 export function detectRoomOutcome(img: Bitmap, seed: Point, options: DetectOptions = {}): DetectOutcome {
-  const prepared = options.walls ? null : prepareWalls(img);
-  const walls = options.walls ?? prepared?.walls;
+  const walls = options.walls ?? prepareWalls(img)?.walls;
   if (!walls) return { ok: false, reason: "bad-image" };
+  return detectRoomInWalls(walls, seed, options);
+}
+
+/** Same as `detectRoomOutcome` on a wall mask from `prepareWalls` (compute it once per plan, reuse it for every click). */
+export function detectRoomInWalls(walls: Mask, seed: Point, options: DetectOptions = {}): DetectOutcome {
   const total = walls.width * walls.height;
   if (countOn(walls) < Math.max(20, total * 0.0005)) return { ok: false, reason: "blank" };
 

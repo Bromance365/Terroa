@@ -3,6 +3,11 @@ import { equivalentDimensions, polygonAreaSqft, roundAreaSqft } from "./geometry
 import type { MeasuredRoom, PlanScale } from "./types";
 import type { UiRoom } from "@/lib/plan-reader/types";
 
+const UNSAFE = /[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u2028-\u202e\u2060-\u2069\ufeff]/g;
+
+/** Room name safe for a quote line: control and bidi characters become spaces, trimmed, at most 60 characters. */
+export const cleanRoomName = (name: string) => name.replace(UNSAFE, " ").replace(/\s+/g, " ").trim().slice(0, 60);
+
 /** Recomputed area of a room: typed rooms from length x width, traced rooms from the polygon and the scale. */
 export function measuredAreaSqft(room: Pick<MeasuredRoom, "points" | "dimsFt">, scale: PlanScale | null): number | null {
   if (room.dimsFt) return roundAreaSqft(room.dimsFt.lengthFt * room.dimsFt.widthFt);
@@ -36,8 +41,8 @@ export function toUiRooms(rooms: readonly MeasuredRoom[], scale: PlanScale | nul
     return {
       id: r.id,
       n: i + 1,
-      label: r.name,
-      name: r.name.slice(0, 60),
+      label: cleanRoomName(r.name) || `#${i + 1}`,
+      name: cleanRoomName(r.name) || `#${i + 1}`,
       page: 1,
       confidence: "high" as const,
       reason: "",

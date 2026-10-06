@@ -110,6 +110,22 @@ Preserve-mode redesign: tokens, fonts and palette unchanged; composition, motion
 | 50 | Imagery | OPEN (F21, Medium) | Illustrations are still the temporary SVG scenes; real photography is the largest remaining visual gap. AI image generation was not run (costs credits, needs approval) |
 | 51 | Browser console | PASS with note | Uploading a plan while the plan reader is disabled logs one expected 503 before falling back to the demo |
 
+## Measure tool and 3D preview (6 October 2026)
+
+PlanScope-style tools adapted to Terroa (`/mesurer`, `/en/measure`). Plan stays in the browser: no upload, no storage, no network call. The Materio-Direct pricing tool was not imported (another company's costs and margins).
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 52 | Scale, detection, areas | PASS | Real Chromium, synthetic two-room PDF (1000 px = 40 ft): scale set by drag, click-to-detect Salon = 465 sq ft (expected 430-500), second click adds Chambre, list shows 2 rooms |
+| 53 | PDF rendering under production CSP | PASS | pdf.js legacy build (v6 non-legacy needs very recent JS); same-origin worker, no console errors |
+| 54 | 3D preview | PASS with note | Lazy-loaded three.js canvas mounts for the measured rooms; only swiftshader GPU performance warnings in headless Chromium |
+| 55 | Accessibility, overflow | PASS | axe 0 violations on `/mesurer` and `/en/measure` (1440 and 390), no horizontal overflow at 390 px |
+| 56 | Regression | PASS | lint 0 errors, typecheck, 167 tests, build |
+
+Fixed during testing: door-bridging radius was capped at 48 px, so doorways over about 3 ft failed to seal on large bitmaps ("leak"); cap raised to 72.
+
+New findings: **F22 (Low)**: detection runs on the main thread (about 1 s on large plans); **F23 (Low)**: no vertex editing of a detected room (redraw or adjust by dimensions); **F24 (Low)**: touch gestures untested on a real device; **F25 (Low)**: 3D walls are indicative only and the figures are not a quote.
+
 ## Verdict
 
 **READY for phase 1 review** (UI with mock data): every phase 1 acceptance item that can be verified here passes.

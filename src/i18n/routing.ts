@@ -19,6 +19,7 @@ export const routing = defineRouting({
     "/quote": { fr: "/soumission", en: "/quote" },
     "/calculator": { fr: "/calculateur", en: "/calculator" },
     "/plan-reader": { fr: "/lecteur-de-plans", en: "/plan-reader" },
+    "/measure": { fr: "/mesurer", en: "/measure" },
     "/projects": { fr: "/realisations", en: "/projects" },
     "/privacy": { fr: "/confidentialite", en: "/privacy" },
     "/terms": { fr: "/conditions", en: "/terms" },
