@@ -559,5 +559,16 @@
     "t5Title": "Governing law",
     "t5Text": "[Text to be supplied by Terroa.]",
     "updated": "Last updated: [date]"
+  },
+  "preview3d": {
+    "title": "3D flooring preview",
+    "orbitHint": "Drag to rotate the view. Arrow keys to turn, plus and minus to zoom.",
+    "interior": "Interior",
+    "topView": "Top view",
+    "unsupported": "The 3D preview is not available on this device. The room list below is still accurate.",
+    "loading": "Loading the 3D preview",
+    "reset": "Reset view",
+    "legend": "Walls are indicative: doors and windows are not shown.",
+    "noFlooring": "No flooring selected"
   }
 }

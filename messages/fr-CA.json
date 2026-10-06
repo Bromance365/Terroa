@@ -559,5 +559,16 @@
     "t5Title": "Droit applicable",
     "t5Text": "[Texte à fournir par Terroa.]",
     "updated": "Dernière mise à jour : [date]"
+  },
+  "preview3d": {
+    "title": "Aperçu 3D du revêtement de sol",
+    "orbitHint": "Glissez pour faire pivoter la vue. Flèches pour tourner, plus et moins pour zoomer.",
+    "interior": "Intérieur",
+    "topView": "Dessus",
+    "unsupported": "L’aperçu 3D n’est pas disponible sur cet appareil. La liste des pièces ci-dessous reste valide.",
+    "loading": "Chargement de l’aperçu 3D",
+    "reset": "Réinitialiser la vue",
+    "legend": "Les murs sont indicatifs : les portes et les fenêtres ne sont pas représentées.",
+    "noFlooring": "Aucun revêtement choisi"
   }
 }
