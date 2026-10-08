@@ -126,6 +126,22 @@ Fixed during testing: door-bridging radius was capped at 48 px, so doorways over
 
 New findings: **F22 (Low)**: detection runs on the main thread (about 1 s on large plans); **F23 (Low)**: no vertex editing of a detected room (redraw or adjust by dimensions); **F24 (Low)**: touch gestures untested on a real device; **F25 (Low)**: 3D walls are indicative only and the figures are not a quote.
 
+## Netlify preview (8 October 2026)
+
+Tested revision: `main` after PR #2 (squash `16cfb74`), deployed at https://terroa.netlify.app (Netlify site `terroa`, in the UREM team: team, billing and members are shared with that business; no Terroa data or keys are). Supabase, Resend and Anthropic are NOT configured there: mock catalogue, quote saving falls back, plan reader off.
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 57 | Pages respond | PASS | 15 FR/EN routes return 200 (home, vinyl, product, panels, quote, calculator, plan reader, measure, projects, privacy, robots, sitemap); unknown path returns 404 |
+| 58 | Security headers | PASS | CSP, HSTS (preload), X-Frame-Options DENY, nosniff, Referrer-Policy and Permissions-Policy present on the deployed URL |
+| 59 | Server guards on the deployed API | PASS | POST `/api/quotes` without Origin: 400; same-origin empty body: 400 `bad_request`; `/api/plans`: 503 `not_configured`; `/api/cron/retention` without secret: 503 |
+| 60 | Static assets | PASS | Sampled JS, CSS and SVG assets return 200 with full bodies |
+| 61 | Real-browser journeys on the deployed URL (axe, quote flow, measure tool, mobile overflow) | BLOCKED | The sandbox egress proxy drops concurrent subresource requests (`ERR_TOO_MANY_RETRIES` on random assets that return 200 via `curl`), so a browser run here is not trustworthy. The same journeys passed on the identical build locally (checks 52-56). Needs a run from a normal network |
+| 62 | Retention job on Netlify | FAIL (known) | The schedule lives in `vercel.json`, which Netlify ignores. Before real data: add a Netlify scheduled function calling the same job, or move the cron elsewhere |
+| 63 | Persistence, email, plan reader on the deployed site | BLOCKED | No Supabase, Resend or Anthropic variables set on Netlify |
+
+New findings: **F26 (Medium)**: retention schedule not active on Netlify (see 62); **F27 (Low, privacy)**: the Netlify site lives in the UREM team, so UREM members and billing can see the Terroa project; move it to its own team before real data.
+
 ## Verdict
 
 **READY for phase 1 review** (UI with mock data): every phase 1 acceptance item that can be verified here passes.
