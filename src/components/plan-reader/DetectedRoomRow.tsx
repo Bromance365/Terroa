@@ -86,10 +86,10 @@ export function DetectedRoomRow({ room, floors, onChange }: { room: UiRoom; floo
             {room.name}
           </p>
           <p className="small num">
-            {room.lengthFt !== null && room.widthFt !== null ? `${formatFeetInches(room.lengthFt, locale)} × ${formatFeetInches(room.widthFt, locale)}` : "—"}
+            {room.lengthFt !== null && room.widthFt !== null ? `${formatFeetInches(room.lengthFt, locale)} × ${formatFeetInches(room.widthFt, locale)}` : "-"}
           </p>
         </div>
-        <p className={cx("num min-w-[4.5rem] text-right font-semibold", included && "text-ink")}>{area === null ? "—" : formatSqft(area, locale)}</p>
+        <p className={cx("num min-w-[4.5rem] text-right font-semibold", included && "text-ink")}>{area === null ? "-" : formatSqft(area, locale)}</p>
         <Badge kind={b.kind}>{b.label}</Badge>
         <Select
           label={<span className="sr-only">{t("planReader.flooringFor", { room: room.name })}</span>}

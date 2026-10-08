@@ -2,6 +2,7 @@
 
 import { useRef, useState, type ChangeEvent, type DragEvent, type RefObject } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/icons";
 import { cx } from "@/components/ui/cx";
@@ -81,6 +82,9 @@ export function UploadPanel({ onFile, headingRef }: { onFile: (file: File) => vo
       </div>
 
       <PrivacyNotice />
+      <p className="small sm:hidden">
+        {t("measure.measureYourself")} <Link href="/measure">{t("measure.navLabel")}</Link>
+      </p>
     </section>
   );
 }

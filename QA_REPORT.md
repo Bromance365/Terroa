@@ -80,6 +80,52 @@ Updated findings: F2 now excludes prices (hidden by decision) and retention valu
 
 Verdict unchanged: **READY for review, NOT READY for production** (checks 23–25 and 34–37 BLOCKED).
 
+## Phase 3 additions (5 October 2026) — plan reader backend, off by default
+
+Approved by Vy: Anthropic as the provider for the plan reader. Not yet decided or done: the model name (`ANTHROPIC_MODEL` is required, no default; `claude-opus-5-5` suggested) and the privacy impact assessment (EFVP), so the live reader stays disabled until `PLAN_READER_ENABLED=true`.
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 38 | Test suite | PASS | `npm test`: 10 files, 98 tests (22 new: server plan service/model/guards, client analyzer) |
+| 39 | Contract: `POST /api/plans`, `POST /api/plans/{id}/analyze`, `DELETE /api/plans/{id}` | PASS (fakes) | Type/size rejected before the database; random storage key; token stored as SHA-256 only and compared in constant time; wrong token = 404; one analysis per upload (409); upload deleted by token; all routes 503 when not enabled (verified on the production build) |
+| 40 | Malformed and hostile files | PASS (unit) | SVG renamed to an image: refused by magic bytes; PDF with JavaScript/EmbeddedFile: refused; PDF over 10 pages: refused; non-image bytes: refused by sharp |
+| 41 | EXIF / GPS in photos | PASS (unit) | A JPEG with GPS EXIF comes out of `cleanImage` with no EXIF; the stored copy is replaced by the cleaned one |
+| 42 | Prompt injection and untrusted output | PASS (unit) | System prompt states document text is data and the only output is the schema; request uses structured outputs (no forced `tool_choice`, which current models reject), no sampling params; hostile output (RTL override, 99 999 ft, negative, out-of-range bbox, extra fields) is sanitised, dimensions become null and the room "illegible"; refusal, truncation and garbage return "unreadable" |
+| 43 | Model call against the real API | BLOCKED | No `ANTHROPIC_API_KEY` in this session and no model decision; spending real money needs approval |
+| 44 | Signed upload to the private bucket, real deletion, retention job on real rows | BLOCKED | Needs the service-role key in an environment (Vercel) |
+| 45 | Prompt-injection fixture against the real model | BLOCKED | Same as 43 |
+
+New findings: **F17 (Medium, privacy)**: the EFVP and written provider terms are still required before `PLAN_READER_ENABLED=true`; **F18 (Low)**: PDFs have no on-page preview in live mode (no renderer), only images show under the overlays; **F19 (Low)**: refusal fallbacks (`fallbacks: "default"`) are not implemented, a refusal shows the "unreadable" state; **F20 (Low)**: PDF page count and active-content checks are byte scans (best effort).
+
+## Visual polish pass (6 October 2026)
+
+Preserve-mode redesign: tokens, fonts and palette unchanged; composition, motion and surfaces improved. No functional change.
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 46 | Home recomposition | PASS (visual) | "Trois façons" is one lead card plus two supporting cards, categories and projects use asymmetric grids (no three equal tiles, no empty grid cells) |
+| 47 | Motion is motivated and safe | PASS | Hero entrance (hierarchy), card lift and button press (feedback), section reveals (reading order), header shadow after scroll. CSS only (scroll-driven animations where supported, plain visible content elsewhere), all inside `prefers-reduced-motion: no-preference`; verified a real scroll shows the reveal and a reduced-motion render shows everything |
+| 48 | Mobile product grids | PASS | Two columns under 640 px on home and category pages, no horizontal overflow at 390 px |
+| 49 | Regression | PASS | lint 0 errors, 98 tests, build, axe 0 violations (19 pages x 2 viewports), scripted browser flows all PASS |
+| 50 | Imagery | OPEN (F21, Medium) | Illustrations are still the temporary SVG scenes; real photography is the largest remaining visual gap. AI image generation was not run (costs credits, needs approval) |
+| 51 | Browser console | PASS with note | Uploading a plan while the plan reader is disabled logs one expected 503 before falling back to the demo |
+
+## Measure tool and 3D preview (6 October 2026)
+
+PlanScope-style tools adapted to Terroa (`/mesurer`, `/en/measure`). Plan stays in the browser: no upload, no storage, no network call. The Materio-Direct pricing tool was not imported (another company's costs and margins).
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 52 | Scale, detection, areas | PASS | Real Chromium, synthetic two-room PDF (1000 px = 40 ft): scale set by drag, click-to-detect Salon = 465 sq ft (expected 430-500), second click adds Chambre, list shows 2 rooms |
+| 53 | PDF rendering under production CSP | PASS | pdf.js legacy build (v6 non-legacy needs very recent JS); same-origin worker, no console errors |
+| 54 | 3D preview | PASS with note | Lazy-loaded three.js canvas mounts for the measured rooms; only swiftshader GPU performance warnings in headless Chromium |
+| 55 | Accessibility, overflow | PASS | axe 0 violations on `/mesurer` and `/en/measure` (1440 and 390), no horizontal overflow at 390 px |
+| 56 | Regression | PASS | lint 0 errors, typecheck, 167 tests, build |
+
+Fixed during testing: door-bridging radius was capped at 48 px, so doorways over about 3 ft failed to seal on large bitmaps ("leak"); cap raised to 72.
+
+New findings: **F22 (Low)**: detection runs on the main thread (about 1 s on large plans); **F23 (Low)**: no vertex editing of a detected room (redraw or adjust by dimensions); **F24 (Low)**: touch gestures untested on a real device; **F25 (Low)**: 3D walls are indicative only and the figures are not a quote.
+
 ## Verdict
 
 **READY for phase 1 review** (UI with mock data): every phase 1 acceptance item that can be verified here passes.

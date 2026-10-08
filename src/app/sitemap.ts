@@ -4,7 +4,7 @@ import { getPathname } from "@/i18n/navigation";
 import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
 import { site } from "@/lib/site";
 
-const STATIC: StaticPathname[] = ["/", "/flooring/vinyl", "/floor-coverings", "/acoustic-panels", "/calculator", "/plan-reader", "/projects", "/privacy", "/terms"];
+const STATIC: StaticPathname[] = ["/", "/flooring/vinyl", "/floor-coverings", "/acoustic-panels", "/calculator", "/plan-reader", "/measure", "/projects", "/privacy", "/terms"];
 
 const url = (locale: Locale, href: unknown) => {
   const p = getPathname({ locale, href: href as never });

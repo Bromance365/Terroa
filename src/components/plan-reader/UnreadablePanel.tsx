@@ -2,6 +2,7 @@
 
 import type { RefObject } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button, LinkButton } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/icons";
 
@@ -26,6 +27,9 @@ export function UnreadablePanel({ onRetry, headingRef }: { onRetry: () => void; 
           {t("planUi.tryAnother")}
         </Button>
       </div>
+      <p className="small">
+        {t("measure.unreadableHint")} <Link href="/measure">{t("measure.navLabel")}</Link>
+      </p>
     </section>
   );
 }
